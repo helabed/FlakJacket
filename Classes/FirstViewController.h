@@ -12,5 +12,10 @@
 @interface FirstViewController : UIViewController {
 
 }
+- (IBAction)testFlak;
+- (IBAction)testGettingMessages;
+- (void)testForFlakServer:(NSString *)hostURL;
+- (void)retrieveNextTenMessages;
+- (void)initAndGetCookies;
 
 @end
