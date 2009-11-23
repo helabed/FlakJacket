@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 #import "JSON.h"
 #import "IPDCMessage.h"
+#import "IPDCUser.h"
 
 @implementation FirstViewController
 
@@ -16,11 +17,83 @@
 	[self testForFlakServer:@"http://flak.heroku.com"];
 }
 
+- (IBAction)testCreateNewAccount{
+	[self initAndGetCookies];
+	[self createNewAccount];
+}
+
+- (IBAction)testLogin{
+	[self initAndGetCookies];
+	[self createNewSessionForLogin];
+}
 - (IBAction)testGettingMessages{
 	[self initAndGetCookies];
 	[self retrieveNextTenMessages];
 }
 
+- (IPDCUser *) getUser{
+    IPDCUser *user = [[IPDCUser alloc] init];
+    user.firstName = @"hani";
+    user.lastName = @"mani";
+    user.email = @"hani@mani.com";
+    user.password = @"hanimani";
+	return user;
+}
+
+- (void)createNewSessionForLogin{
+    IPDCUser *user = [self getUser];
+	
+    NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
+    
+    NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
+    
+    NSString *urlString = @"http://flak.heroku.com/session.json";
+	
+    [self postToFlak:urlString 
+		  jsonString: jsonStringForSessionCreation];
+}
+
+
+
+
+- (void)createNewAccount{
+    IPDCUser *user = [self getUser];
+
+    NSString *jsonStringForUser = [user jsonStringForUserCreation];
+    
+    NSLog(@"jsonStringForUser: %@", jsonStringForUser);
+    
+    NSString *urlString = @"http://flak.heroku.com/users.json";
+
+    [self postToFlak:urlString 
+		  jsonString: jsonStringForUser];
+}
+	
+- (void) postToFlak: (NSString *) urlString jsonString: (NSString *) jsonStringToUse  {
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    
+    NSData *data = [jsonStringToUse dataUsingEncoding:NSISOLatin2StringEncoding];
+    [request setHTTPBody:data];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection 
+                            sendSynchronousRequest:request 
+                            returningResponse:&response 
+                            error:&error];
+    NSString *responseString = [[[NSString alloc] initWithData:responseData
+                                                      encoding:NSUTF8StringEncoding] autorelease];
+    
+    NSLog(@"responseString: %@", responseString);
+ 	
+}
 
 - (void)initAndGetCookies{
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];

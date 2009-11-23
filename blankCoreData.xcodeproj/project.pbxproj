@@ -17,6 +17,7 @@
 		2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* RootViewController.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		373926A110BA43E8007BC065 /* IPDCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 373926A010BA43E8007BC065 /* IPDCUser.m */; };
 		3755AF7B10B6544700D37666 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AF6A10B6544700D37666 /* CDataScanner.m */; };
 		3755AF7C10B6544700D37666 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AF6D10B6544700D37666 /* CDataScanner_Extensions.m */; };
 		3755AF7D10B6544700D37666 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AF6F10B6544700D37666 /* NSCharacterSet_Extensions.m */; };
@@ -51,6 +52,8 @@
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3739269F10BA43E8007BC065 /* IPDCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDCUser.h; sourceTree = "<group>"; };
+		373926A010BA43E8007BC065 /* IPDCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDCUser.m; sourceTree = "<group>"; };
 		3755AF6910B6544700D37666 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		3755AF6A10B6544700D37666 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		3755AF6C10B6544700D37666 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				375C033C10B63D5300ED96DE /* FirstViewController.m */,
 				3755AFA610B6571300D37666 /* IPDCMessage.h */,
 				3755AFA710B6571300D37666 /* IPDCMessage.m */,
+				3739269F10BA43E8007BC065 /* IPDCUser.h */,
+				373926A010BA43E8007BC065 /* IPDCUser.m */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* blankCoreDataAppDelegate.h */,
@@ -313,6 +318,7 @@
 				3755AF9C10B6566200D37666 /* SBJsonBase.m in Sources */,
 				3755AF9D10B6566200D37666 /* SBJSON.m in Sources */,
 				3755AFA810B6571300D37666 /* IPDCMessage.m in Sources */,
+				373926A110BA43E8007BC065 /* IPDCUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

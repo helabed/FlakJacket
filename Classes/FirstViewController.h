@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class IPDCUser;
 
 @interface FirstViewController : UIViewController {
 
 }
 - (IBAction)testFlak;
+- (IBAction)testCreateNewAccount;
 - (IBAction)testGettingMessages;
+- (IBAction)testLogin;
 - (void)testForFlakServer:(NSString *)hostURL;
 - (void)retrieveNextTenMessages;
 - (void)initAndGetCookies;
-
+- (void)createNewAccount;
+- (void)createNewSessionForLogin;
+- (void)postToFlak: (NSString *) urlString jsonString: (NSString *) jsonStringToUse; 
+- (IPDCUser *)getUser;
 @end
