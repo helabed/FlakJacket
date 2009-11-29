@@ -31,6 +31,11 @@
 	[self retrieveNextTenMessages];
 }
 
+- (IBAction)testPostHelloFromHani{
+	[self initAndGetCookies];
+	[self postAHelloFromHani];
+}
+
 - (IPDCUser *) getUser{
     IPDCUser *user = [[IPDCUser alloc] init];
     user.firstName = @"hani";
@@ -53,6 +58,36 @@
 		  jsonString: jsonStringForSessionCreation];
 }
 
+
+- (void)postAHelloFromHani{
+
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSDictionary dictionaryWithObjectsAndKeys:
+								 @"hani@mani.com", @"user_id", 
+								 @"Hello from Hani Mani", @"body", 
+								 nil],
+                                @"message", nil];
+    
+    SBJSON *parser = [[SBJSON alloc] init];
+    
+    NSString *newJsonString = [parser stringWithObject:dictionary];
+    
+    //NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
+    
+    [parser release];
+    
+    NSLog(@"newJsonString: %@", newJsonString);
+	
+	//NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
+    
+    //NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
+    
+    NSString *urlString = @"http://flak.heroku.com/messages.json";
+	
+    [self postToFlak:urlString 
+		  jsonString: newJsonString];
+}
 
 
 
@@ -123,7 +158,7 @@
 	
     SBJSON *parser = [[SBJSON alloc] init];
     
-    NSURL *url = [NSURL URLWithString:@"http://flak.heroku.com/messages.json"];
+    NSURL *url = [NSURL URLWithString:@"http://flak.heroku.com/messages.json?kind=message"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

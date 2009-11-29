@@ -17,6 +17,8 @@
 - (IBAction)testCreateNewAccount;
 - (IBAction)testGettingMessages;
 - (IBAction)testLogin;
+- (IBAction)testPostHelloFromHani;
+
 - (void)testForFlakServer:(NSString *)hostURL;
 - (void)retrieveNextTenMessages;
 - (void)initAndGetCookies;
@@ -24,4 +26,5 @@
 - (void)createNewSessionForLogin;
 - (void)postToFlak: (NSString *) urlString jsonString: (NSString *) jsonStringToUse; 
 - (IPDCUser *)getUser;
+- (void)postAHelloFromHani;
 @end
