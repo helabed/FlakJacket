@@ -16,7 +16,7 @@
 @synthesize navigationController;
 @synthesize tabBarController;
 
-
+@synthesize flakManager;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -31,6 +31,10 @@
 	
 	//[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
+	
+	
+	assert( flakManager != nil );
+
 }
 
 /**
@@ -44,7 +48,10 @@
 			/*
 			 Replace this implementation with code to handle the error appropriately.
 			 
-			 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+			 abort() causes the application to generate a crash log and terminate. 
+			 You should not use this function in a shipping application, although it may be useful during development. 
+			 If it is not possible to recover from the error, display an alert panel that instructs the user to 
+			 quit the application by pressing the Home button.
 			 */
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			abort();
@@ -107,7 +114,11 @@
 		/*
 		 Replace this implementation with code to handle the error appropriately.
 		 
-		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+		 abort() causes the application to generate a crash log and terminate. 
+		 You should not use this function in a shipping application, although 
+		 it may be useful during development. If it is not possible to recover 
+		 from the error, display an alert panel that instructs the user to quit the 
+		 application by pressing the Home button.
 		 
 		 Typical reasons for an error here include:
 		 * The persistent store is not accessible
@@ -137,6 +148,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+	[flakManager release];
 	
     [managedObjectContext release];
     [managedObjectModel release];

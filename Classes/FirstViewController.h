@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class IPDCUser;
+@class FlakManager;
 
 @interface FirstViewController : UIViewController {
 
+	FlakManager *flakManager;
+
 }
+@property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
+
+
 - (IBAction)testFlak;
 - (IBAction)testCreateNewAccount;
 - (IBAction)testGettingMessages;

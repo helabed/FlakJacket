@@ -10,8 +10,12 @@
 #import "JSON.h"
 #import "IPDCMessage.h"
 #import "IPDCUser.h"
+#import "FlakManager.h"
+#import "RootViewController.h"
 
 @implementation FirstViewController
+
+@synthesize flakManager;
 
 - (IBAction)testFlak{
 	[self testForFlakServer:@"http://flak.heroku.com"];
@@ -168,7 +172,7 @@
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     
-    NSLog(@"jsonString: %@", jsonString);
+    //NSLog(@"jsonString: %@", jsonString);
     
     NSArray *jsonArray = [parser objectWithString:jsonString];
     //NSLog(@"json array: %@", jsonArray);
@@ -181,6 +185,9 @@
 		
         NSLog(@"new message: %@", message);
         
+		self.flakManager.currentMessage = message;
+		[self.flakManager.rootViewController insertNewObject];
+		
         [message release];
     }
     
@@ -236,12 +243,14 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	assert( flakManager != nil );
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -265,6 +274,8 @@
 
 
 - (void)dealloc {
+	[flakManager release];
+	
     [super dealloc];
 }
 

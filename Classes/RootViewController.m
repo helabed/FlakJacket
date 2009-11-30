@@ -7,12 +7,14 @@
 //
 
 #import "RootViewController.h"
+#import "FlakManager.h"
+#import "IPDCMessage.h"
 
 
 @implementation RootViewController
 
 @synthesize fetchedResultsController, managedObjectContext;
-
+@synthesize flakManager;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -21,10 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	
+	assert( flakManager != nil );
+
 	// Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+																			   target:self 
+																			   action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
 	
@@ -33,7 +40,10 @@
 		/*
 		 Replace this implementation with code to handle the error appropriately.
 		 
-		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+		 abort() causes the application to generate a crash log and terminate. 
+		 You should not use this function in a shipping application, although it 
+		 may be useful during development. If it is not possible to recover from the error, 
+		 display an alert panel that instructs the user to quit the application by pressing the Home button.
 		 */
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
@@ -86,7 +96,19 @@
 	NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 	
 	// If appropriate, configure the new managed object.
-	[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+
+	
+	// hani
+	//[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+	
+	NSLog(@"currentMessage: %@", self.flakManager.currentMessage);
+	
+	[newManagedObject setValue:self.flakManager.currentMessage.kind forKey:@"kind"];
+	[newManagedObject setValue:self.flakManager.currentMessage.lastName forKey:@"lastName"];
+	[newManagedObject setValue:self.flakManager.currentMessage.firstName forKey:@"firstName"];
+	[newManagedObject setValue:self.flakManager.currentMessage.userId forKey:@"userId"];
+	[newManagedObject setValue:self.flakManager.currentMessage.messageText forKey:@"messageText"];
+	[newManagedObject setValue:self.flakManager.currentMessage.messageId forKey:@"messageId"];
 	
 	// Save the context.
     NSError *error = nil;
@@ -94,7 +116,10 @@
 		/*
 		 Replace this implementation with code to handle the error appropriately.
 		 
-		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+		 abort() causes the application to generate a crash log and terminate. 
+		 You should not use this function in a shipping application, although it may be useful during development. 
+		 If it is not possible to recover from the error, display an alert panel that instructs 
+		 the user to quit the application by pressing the Home button.
 		 */
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
@@ -128,7 +153,7 @@
     
 	// Configure the cell.
 	NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+	cell.textLabel.text = [[managedObject valueForKey:@"messageText"] description];
 	
     return cell;
 }
@@ -157,7 +182,8 @@
 
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+											forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the managed object for the given index path
@@ -170,7 +196,10 @@
 			/*
 			 Replace this implementation with code to handle the error appropriately.
 			 
-			 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+			 abort() causes the application to generate a crash log and terminate. 
+			 You should not use this function in a shipping application, although it may be 
+			 useful during development. If it is not possible to recover from the error, 
+			 display an alert panel that instructs the user to quit the application by pressing the Home button.
 			 */
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			abort();
@@ -200,21 +229,24 @@
 	// Create the fetch request for the entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	// Edit the entity name as appropriate.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];
 	
 	// Set the batch size to a suitable number.
 	[fetchRequest setFetchBatchSize:20];
 	
 	// Edit the sort key as appropriate.
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"messageText" ascending:NO];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	
 	// Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+																								managedObjectContext:managedObjectContext 
+																								  sectionNameKeyPath:nil 
+																										   cacheName:@"Root"];
     aFetchedResultsController.delegate = self;
 	self.fetchedResultsController = aFetchedResultsController;
 	
@@ -234,18 +266,23 @@
 }
 
 /*
- Instead of using controllerDidChangeContent: to respond to all changes, you can implement all the delegate methods to update the table view in response to individual changes.  This may have performance implications if a large number of changes are made simultaneously.
+ Instead of using controllerDidChangeContent: to respond to all changes, you can implement all the delegate methods 
+ to update the table view in response to individual changes.  This may have performance implications if 
+ a large number of changes are made simultaneously.
 
 // Notifies the delegate that section and object changes are about to be processed and notifications will be sent. 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	[self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo 
+ atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
 	// Update the table view appropriately.
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+- (void)controller:(NSFetchedResultsController *)controller 
+ didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath 
+ forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	// Update the table view appropriately.
 }
 
@@ -265,6 +302,8 @@
 
 
 - (void)dealloc {
+	[flakManager release];
+	
 	[fetchedResultsController release];
 	[managedObjectContext release];
     [super dealloc];

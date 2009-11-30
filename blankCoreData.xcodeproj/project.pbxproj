@@ -35,6 +35,10 @@
 		3755AFA810B6571300D37666 /* IPDCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AFA710B6571300D37666 /* IPDCMessage.m */; };
 		375C033A10B63D4000ED96DE /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 375C033910B63D4000ED96DE /* SecondView.xib */; };
 		375C033D10B63D5300ED96DE /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 375C033C10B63D5300ED96DE /* FirstViewController.m */; };
+		37E5CD3F10C37771005D278F /* FlakManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CD3E10C37771005D278F /* FlakManager.m */; };
+		37E5CE1110C387E9005D278F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE0C10C387E9005D278F /* Event.m */; };
+		37E5CE1210C387E9005D278F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE0E10C387E9005D278F /* User.m */; };
+		37E5CE1310C387E9005D278F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE1010C387E9005D278F /* Message.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +92,14 @@
 		375C033910B63D4000ED96DE /* SecondView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondView.xib; sourceTree = "<group>"; };
 		375C033B10B63D5300ED96DE /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		375C033C10B63D5300ED96DE /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		37E5CD3D10C37771005D278F /* FlakManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlakManager.h; sourceTree = "<group>"; };
+		37E5CD3E10C37771005D278F /* FlakManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlakManager.m; sourceTree = "<group>"; };
+		37E5CE0B10C387E9005D278F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		37E5CE0C10C387E9005D278F /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		37E5CE0D10C387E9005D278F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		37E5CE0E10C387E9005D278F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		37E5CE0F10C387E9005D278F /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		37E5CE1010C387E9005D278F /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* blankCoreData-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "blankCoreData-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +121,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				37E5CE0B10C387E9005D278F /* Event.h */,
+				37E5CE0C10C387E9005D278F /* Event.m */,
+				37E5CE0D10C387E9005D278F /* User.h */,
+				37E5CE0E10C387E9005D278F /* User.m */,
+				37E5CE0F10C387E9005D278F /* Message.h */,
+				37E5CE1010C387E9005D278F /* Message.m */,
 				3755AF8A10B6561300D37666 /* SBJSON */,
 				3755AF6810B6544700D37666 /* touchJSON */,
 				375C033B10B63D5300ED96DE /* FirstViewController.h */,
@@ -121,6 +139,8 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* blankCoreDataAppDelegate.h */,
 				1D3623250D0F684500981E51 /* blankCoreDataAppDelegate.m */,
+				37E5CD3D10C37771005D278F /* FlakManager.h */,
+				37E5CD3E10C37771005D278F /* FlakManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -319,6 +339,10 @@
 				3755AF9D10B6566200D37666 /* SBJSON.m in Sources */,
 				3755AFA810B6571300D37666 /* IPDCMessage.m in Sources */,
 				373926A110BA43E8007BC065 /* IPDCUser.m in Sources */,
+				37E5CD3F10C37771005D278F /* FlakManager.m in Sources */,
+				37E5CE1110C387E9005D278F /* Event.m in Sources */,
+				37E5CE1210C387E9005D278F /* User.m in Sources */,
+				37E5CE1310C387E9005D278F /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
