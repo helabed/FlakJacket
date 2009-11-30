@@ -39,6 +39,8 @@
 		37E5CE1110C387E9005D278F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE0C10C387E9005D278F /* Event.m */; };
 		37E5CE1210C387E9005D278F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE0E10C387E9005D278F /* User.m */; };
 		37E5CE1310C387E9005D278F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE1010C387E9005D278F /* Message.m */; };
+		37E5CE8A10C3990A005D278F /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE8810C3990A005D278F /* MessageViewController.m */; };
+		37E5CE8B10C3990A005D278F /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E5CE8910C3990A005D278F /* MessageViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,9 @@
 		37E5CE0E10C387E9005D278F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		37E5CE0F10C387E9005D278F /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		37E5CE1010C387E9005D278F /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		37E5CE8710C3990A005D278F /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		37E5CE8810C3990A005D278F /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		37E5CE8910C3990A005D278F /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MessageViewController.xib; path = Classes/MessageViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* blankCoreData-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "blankCoreData-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +146,8 @@
 				1D3623250D0F684500981E51 /* blankCoreDataAppDelegate.m */,
 				37E5CD3D10C37771005D278F /* FlakManager.h */,
 				37E5CD3E10C37771005D278F /* FlakManager.m */,
+				37E5CE8710C3990A005D278F /* MessageViewController.h */,
+				37E5CE8810C3990A005D278F /* MessageViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -177,6 +184,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37E5CE8910C3990A005D278F /* MessageViewController.xib */,
 				375C033910B63D4000ED96DE /* SecondView.xib */,
 				28860B760F44E54D00985440 /* blankCoreData.xcdatamodel */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
@@ -308,6 +316,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
 				375C033A10B63D4000ED96DE /* SecondView.xib in Resources */,
+				37E5CE8B10C3990A005D278F /* MessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +352,7 @@
 				37E5CE1110C387E9005D278F /* Event.m in Sources */,
 				37E5CE1210C387E9005D278F /* User.m in Sources */,
 				37E5CE1310C387E9005D278F /* Message.m in Sources */,
+				37E5CE8A10C3990A005D278F /* MessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

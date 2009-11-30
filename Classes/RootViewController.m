@@ -9,12 +9,15 @@
 #import "RootViewController.h"
 #import "FlakManager.h"
 #import "IPDCMessage.h"
+#import "MessageViewController.h"
 
 
 @implementation RootViewController
 
 @synthesize fetchedResultsController, managedObjectContext;
 @synthesize flakManager;
+@synthesize messageViewController;
+
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -25,13 +28,15 @@
 
 	
 	assert( flakManager != nil );
-
+	assert( messageViewController != nil );
+	
 	// Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
 																			   target:self 
-																			   action:@selector(insertNewObject)];
+																			   action:@selector(addMessageAction)];
+																			   //action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
 	
@@ -50,6 +55,12 @@
 	}
 }
 
+- (IBAction)addMessageAction { 
+	NSLog(@"add message method invoked");
+	
+	[self presentModalViewController:self.messageViewController animated:YES]; 
+	
+}
 /*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -153,6 +164,8 @@
     
 	// Configure the cell.
 	NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
 	cell.textLabel.text = [[managedObject valueForKey:@"messageText"] description];
 	
     return cell;
@@ -169,6 +182,22 @@
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
+	
+	//MessageViewController *messageViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+	NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+
+	NSLog(@"messageText %@", [selectedObject valueForKey:@"messageText"]);
+	
+	self.flakManager.currentMessage.messageText = [selectedObject valueForKey:@"messageText"];
+	self.flakManager.currentMessage.kind = [selectedObject valueForKey:@"kind"];
+	//	[newManagedObject setValue:self.flakManager.currentMessage.lastName forKey:@"lastName"];
+	//	[newManagedObject setValue:self.flakManager.currentMessage.firstName forKey:@"firstName"];
+	//	[newManagedObject setValue:self.flakManager.currentMessage.userId forKey:@"userId"];
+	//	[newManagedObject setValue:self.flakManager.currentMessage.messageId forKey:@"messageId"];
+	
+	NSLog(@"messageText from currentMessage %@", self.flakManager.currentMessage.messageText);
+	
+	[self.navigationController pushViewController:messageViewController animated:YES];
 }
 
 
@@ -303,6 +332,7 @@
 
 - (void)dealloc {
 	[flakManager release];
+	[messageViewController release];
 	
 	[fetchedResultsController release];
 	[managedObjectContext release];
