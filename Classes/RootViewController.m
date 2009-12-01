@@ -189,11 +189,11 @@
 	NSLog(@"messageText %@", [selectedObject valueForKey:@"messageText"]);
 	
 	self.flakManager.currentMessage.messageText = [selectedObject valueForKey:@"messageText"];
-	self.flakManager.currentMessage.kind = [selectedObject valueForKey:@"kind"];
-	//	[newManagedObject setValue:self.flakManager.currentMessage.lastName forKey:@"lastName"];
-	//	[newManagedObject setValue:self.flakManager.currentMessage.firstName forKey:@"firstName"];
-	//	[newManagedObject setValue:self.flakManager.currentMessage.userId forKey:@"userId"];
-	//	[newManagedObject setValue:self.flakManager.currentMessage.messageId forKey:@"messageId"];
+	//self.flakManager.currentMessage.kind = [selectedObject valueForKey:@"kind"];
+	self.flakManager.currentMessage.lastName  = [selectedObject valueForKey:@"lastName"];
+	self.flakManager.currentMessage.firstName  = [selectedObject valueForKey:@"firstName"];
+	//self.flakManager.currentMessage.userId  = [selectedObject valueForKey:@"userId"];
+
 	
 	NSLog(@"messageText from currentMessage %@", self.flakManager.currentMessage.messageText);
 	

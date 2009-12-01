@@ -29,9 +29,9 @@
 @property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
 @property (nonatomic, retain) IBOutlet blankCoreDataAppDelegate *coreDataAppDelegate;
 
-@property (nonatomic, retain) IPDCUser    *currentUser;
-@property (nonatomic, retain) IPDCMessage *currentMessage;
-@property (nonatomic, retain) NSArray     *currentListOfMessages;
+@property (nonatomic, retain) IBOutlet IPDCUser    *currentUser;
+@property (nonatomic, retain) IBOutlet IPDCMessage *currentMessage;
+@property (nonatomic, retain) IBOutlet NSArray     *currentListOfMessages;
 
 
 @end

@@ -30,15 +30,32 @@
 }
 */
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	self.messageText.text = self.flakManager.currentMessage.messageText;
+	//self.userId.text = self.flakManager.currentMessage.userId;
+	self.firstName.text = self.flakManager.currentMessage.firstName;
+	self.lastName.text = self.flakManager.currentMessage.lastName;
 	
 }
 
+- (void)viewWillAppear:(BOOL)animated { 
+	[super viewWillAppear:animated]; 
+
+	self.messageText.text = self.flakManager.currentMessage.messageText;
+	//self.userId.text = self.flakManager.currentMessage.userId;
+	self.firstName.text = self.flakManager.currentMessage.firstName;
+	self.lastName.text = self.flakManager.currentMessage.lastName;
+	
+}
+
+- (IBAction)done { 
+	//[[self parentViewController] dismissModalViewControllerAnimated:YES]; 
+	
+	[self.navigationController popViewControllerAnimated:YES];
+} 
 
 
 // Override to allow orientations other than the default portrait orientation.
