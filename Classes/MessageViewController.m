@@ -67,6 +67,7 @@
 
 	if( [self parentViewController] != nil ) {
 		[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
+      [self.flakManager.firstViewController retrieveNextTenMessages];
 		[[self parentViewController] dismissModalViewControllerAnimated:YES];
 	}
 } 
