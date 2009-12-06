@@ -40,11 +40,8 @@
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	
+	[super viewDidLoad];
 	[self updateMessage];
-
-	
 }
 
 - (void)viewWillAppear:(BOOL)animated { 
@@ -55,7 +52,6 @@
 //	//self.userId.text = self.flakManager.currentMessage.userId;
 //	self.firstName.text = self.flakManager.currentMessage.firstName;
 //	self.lastName.text = self.flakManager.currentMessage.lastName;
-	
 }
 
 - (IBAction)done { 

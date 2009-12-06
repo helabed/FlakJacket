@@ -1,0 +1,31 @@
+-prevent duplicates
+  -done
+-Sending a Message
+  -immediately retrieve more messages
+    -ask core data for the max message id
+      -done
+    -use the max id to request more messages from flak server
+      -done
+    -done
+  -reload the table view
+    -done
+
+-create new login
+  -store in preferences
+-session keep alive
+-track preferences
+  -user preferences
+  -host preferences
+
+-change "done" button to "Post"
+-tab labels
+-custom cells
+  -custom height
+  -show person
+-MessageViewController
+  -remove User ID
+  -split into 1 for writing and different 1 for viewing
+-show failure or success message/alert
+-scroll to grab more messages
+-move CoreData code into a model class or Core Data manager
+-get rid of message from NIB

@@ -33,5 +33,4 @@
 @property (nonatomic, retain) IBOutlet IPDCMessage *currentMessage;
 @property (nonatomic, retain) IBOutlet NSArray     *currentListOfMessages;
 
-
 @end
