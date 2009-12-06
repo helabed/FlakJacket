@@ -100,7 +100,6 @@
 	}
 }
 
-
 - (void)textViewDidEndEditing:(UITextView *)textView {
 	NSLog(@"textViewDidEndEditing method invoked");
 	if(textView == self.messageText) {
@@ -110,14 +109,11 @@
 		//[self dismissModalViewControllerAnimated:YES];
 	}
 	[textView resignFirstResponder];
-
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
 												replacementText:(NSString *)text {
-	NSLog(@"%@", text);
-	if ([text isEqualToString:@"\n"]) 
-	{
+	if ([text isEqualToString:@"\n"]) {
 		[textView resignFirstResponder];
 		return NO;
 	}
@@ -147,6 +143,5 @@
     
 	[super dealloc];
 }
-
 
 @end
