@@ -9,6 +9,7 @@
 #import "MessageViewController.h"
 #import "FlakManager.h"
 #import "IPDCMessage.h"
+#import "FirstViewController.h"
 
 @implementation MessageViewController
 
@@ -60,7 +61,14 @@
 - (IBAction)done { 
 	//[[self parentViewController] dismissModalViewControllerAnimated:YES]; 
 	
+	NSLog(@"done method invoked");
+	
 	[self.navigationController popViewControllerAnimated:YES];
+
+	if( [self parentViewController] != nil ) {
+		[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
+		[[self parentViewController] dismissModalViewControllerAnimated:YES];
+	}
 } 
 
 
@@ -74,19 +82,45 @@
 
 // use this to do validation before the keyborard goes away.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField { 
+	NSLog(@"textFieldShouldReturn method invoked");
 	[textField resignFirstResponder]; 
 	return YES;
 }
 
 // used to update the user feedback( or outcome message ).
 - (void)textFieldDidEndEditing:(UITextField *)textField { 
-	if(textField == self.messageText) {
+	NSLog(@"textFieldDidEndEditing method invoked");
+	if(textField == self.firstName) {
+ 		//[self.wordsModel.words addObject:self.newWord.text];
+		//[self.wordsModel saveData];		
+		self.firstName =  textField;	
+	}
+	else if( textField == self.lastName ){
+		self.lastName = textField;
+	}
+}
+
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+	NSLog(@"textViewDidEndEditing method invoked");
+	if(textView == self.messageText) {
  		//[self.wordsModel.words addObject:self.newWord.text];
 		//[self.wordsModel saveData];
-		
-		self.messageText.text =  @"";	
-		[self dismissModalViewControllerAnimated:YES];
+		self.flakManager.currentMessage.messageText = textView.text;
+		//[self dismissModalViewControllerAnimated:YES];
 	}
+	[textView resignFirstResponder];
+
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
+												replacementText:(NSString *)text {
+	if ([text isEqualToString:@"\n"]) 
+	{
+		[textView resignFirstResponder];
+		return NO;
+	}
+	return YES;
 }
 
 - (void)didReceiveMemoryWarning {

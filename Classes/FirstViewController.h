@@ -33,4 +33,5 @@
 - (void)postToFlak: (NSString *) urlString jsonString: (NSString *) jsonStringToUse; 
 - (IPDCUser *)getUser;
 - (void)postAHelloFromHani;
+- (void)postMessage:(NSString *)messageBody;
 @end

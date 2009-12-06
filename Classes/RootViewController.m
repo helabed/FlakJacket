@@ -58,8 +58,15 @@
 - (IBAction)addMessageAction { 
 	NSLog(@"add message method invoked");
 	
+	self.flakManager.currentMessage.messageText = @"";
+	//self.flakManager.currentMessage.kind = [selectedObject valueForKey:@"kind"];
+	self.flakManager.currentMessage.lastName  = @"";
+	self.flakManager.currentMessage.firstName  = @"";
+	//self.flakManager.currentMessage.userId  = [selectedObject valueForKey:@"userId"];
+
 	[self presentModalViewController:self.messageViewController animated:YES]; 
 	
+	NSLog(@"after call to Modal Dialog messageViewController");	
 }
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -112,7 +119,7 @@
 	// hani
 	//[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
 	
-	NSLog(@"currentMessage: %@", self.flakManager.currentMessage);
+	//NSLog(@"currentMessage: %@", self.flakManager.currentMessage);
 	
 	[newManagedObject setValue:self.flakManager.currentMessage.kind forKey:@"kind"];
 	[newManagedObject setValue:self.flakManager.currentMessage.lastName forKey:@"lastName"];
@@ -120,6 +127,7 @@
 	[newManagedObject setValue:self.flakManager.currentMessage.userId forKey:@"userId"];
 	[newManagedObject setValue:self.flakManager.currentMessage.messageText forKey:@"messageText"];
 	[newManagedObject setValue:self.flakManager.currentMessage.messageId forKey:@"messageId"];
+	[newManagedObject setValue:self.flakManager.currentMessage.dateTime forKey:@"dateTime"];
 	
 	// Save the context.
     NSError *error = nil;
@@ -135,6 +143,7 @@
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
     }
+	NSLog(@"newManagedObject: %@", newManagedObject);
 }
 
 
@@ -265,7 +274,9 @@
 	[fetchRequest setFetchBatchSize:20];
 	
 	// Edit the sort key as appropriate.
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"messageText" ascending:NO];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
+	//NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"messageText" ascending:NO];
+	
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	
 	[fetchRequest setSortDescriptors:sortDescriptors];

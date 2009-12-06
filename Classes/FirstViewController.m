@@ -61,6 +61,35 @@
     [self postToFlak:urlString 
 		  jsonString: jsonStringForSessionCreation];
 }
+- (void)postMessage:(NSString *)messageBody {
+	
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSDictionary dictionaryWithObjectsAndKeys:
+								 @"hani@mani.com", @"user_id", 
+								 messageBody, @"body", 
+								 nil],
+                                @"message", nil];
+    
+    SBJSON *parser = [[SBJSON alloc] init];
+    
+    NSString *newJsonString = [parser stringWithObject:dictionary];
+    
+    //NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
+    
+    [parser release];
+    
+    NSLog(@"newJsonString: %@", newJsonString);
+	
+	//NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
+    
+    //NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
+    
+    NSString *urlString = @"http://flak.heroku.com/messages.json";
+	
+    [self postToFlak:urlString 
+		  jsonString: newJsonString];
+}
 
 
 - (void)postAHelloFromHani{
