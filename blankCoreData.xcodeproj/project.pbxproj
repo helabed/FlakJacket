@@ -33,7 +33,6 @@
 		3755AF9C10B6566200D37666 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AF9110B6566200D37666 /* SBJsonBase.m */; };
 		3755AF9D10B6566200D37666 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AF9310B6566200D37666 /* SBJSON.m */; };
 		3755AFA810B6571300D37666 /* IPDCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755AFA710B6571300D37666 /* IPDCMessage.m */; };
-		375C033A10B63D4000ED96DE /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 375C033910B63D4000ED96DE /* SecondView.xib */; };
 		375C033D10B63D5300ED96DE /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 375C033C10B63D5300ED96DE /* FirstViewController.m */; };
 		37E5CD3F10C37771005D278F /* FlakManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CD3E10C37771005D278F /* FlakManager.m */; };
 		37E5CE1110C387E9005D278F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE0C10C387E9005D278F /* Event.m */; };
@@ -42,6 +41,10 @@
 		37E5CE8A10C3990A005D278F /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE8810C3990A005D278F /* MessageViewController.m */; };
 		37E5CE8B10C3990A005D278F /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E5CE8910C3990A005D278F /* MessageViewController.xib */; };
 		DC08AAAB10CC56D60023EE9C /* UserPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DC08AAAA10CC56D60023EE9C /* UserPreferences.m */; };
+		DC08AAB310CC5A3E0023EE9C /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB210CC5A3E0023EE9C /* 19-gear.png */; };
+		DC08AAB610CC5AAB0023EE9C /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB510CC5AAB0023EE9C /* 09-chat2.png */; };
+		DC08AAB910CC5B2F0023EE9C /* 101-gameplan.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */; };
+		DC08AAC910CC5E1B0023EE9C /* UserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +95,6 @@
 		3755AF9710B6566200D37666 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		3755AFA610B6571300D37666 /* IPDCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDCMessage.h; sourceTree = "<group>"; };
 		3755AFA710B6571300D37666 /* IPDCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDCMessage.m; sourceTree = "<group>"; };
-		375C033910B63D4000ED96DE /* SecondView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondView.xib; sourceTree = "<group>"; };
 		375C033B10B63D5300ED96DE /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		375C033C10B63D5300ED96DE /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		37E5CD3D10C37771005D278F /* FlakManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlakManager.h; sourceTree = "<group>"; };
@@ -109,6 +111,11 @@
 		8D1107310486CEB800E47090 /* blankCoreData-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "blankCoreData-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		DC08AAA910CC56D60023EE9C /* UserPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferences.h; sourceTree = "<group>"; };
 		DC08AAAA10CC56D60023EE9C /* UserPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferences.m; sourceTree = "<group>"; };
+		DC08AAB210CC5A3E0023EE9C /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		DC08AAB510CC5AAB0023EE9C /* 09-chat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat2.png"; sourceTree = "<group>"; };
+		DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "101-gameplan.png"; sourceTree = "<group>"; };
+		DC08AAC710CC5E1B0023EE9C /* UserPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferencesViewController.h; sourceTree = "<group>"; };
+		DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +160,8 @@
 				37E5CE8810C3990A005D278F /* MessageViewController.m */,
 				DC08AAA910CC56D60023EE9C /* UserPreferences.h */,
 				DC08AAAA10CC56D60023EE9C /* UserPreferences.m */,
+				DC08AAC710CC5E1B0023EE9C /* UserPreferencesViewController.h */,
+				DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -189,8 +198,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */,
+				DC08AAB510CC5AAB0023EE9C /* 09-chat2.png */,
+				DC08AAB210CC5A3E0023EE9C /* 19-gear.png */,
 				37E5CE8910C3990A005D278F /* MessageViewController.xib */,
-				375C033910B63D4000ED96DE /* SecondView.xib */,
 				28860B760F44E54D00985440 /* blankCoreData.xcdatamodel */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
@@ -320,8 +331,10 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
-				375C033A10B63D4000ED96DE /* SecondView.xib in Resources */,
 				37E5CE8B10C3990A005D278F /* MessageViewController.xib in Resources */,
+				DC08AAB310CC5A3E0023EE9C /* 19-gear.png in Resources */,
+				DC08AAB610CC5AAB0023EE9C /* 09-chat2.png in Resources */,
+				DC08AAB910CC5B2F0023EE9C /* 101-gameplan.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +372,7 @@
 				37E5CE1310C387E9005D278F /* Message.m in Sources */,
 				37E5CE8A10C3990A005D278F /* MessageViewController.m in Sources */,
 				DC08AAAB10CC56D60023EE9C /* UserPreferences.m in Sources */,
+				DC08AAC910CC5E1B0023EE9C /* UserPreferencesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

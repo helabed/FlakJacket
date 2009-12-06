@@ -74,6 +74,8 @@
 	return YES;
 }
 
+#pragma mark -
+#pragma mark UITextFieldDelegate
 
 // use this to do validation before the keyborard goes away.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField { 
@@ -94,6 +96,9 @@
 		self.lastName = textField;
 	}
 }
+
+#pragma mark -
+#pragma mark UITextViewDelegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
 	NSLog(@"textViewDidEndEditing method invoked");
