@@ -188,42 +188,47 @@
 	
 }
 - (void)retrieveNextTenMessages {
-	
+
+	NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
+
+	NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
+
     SBJSON *parser = [[SBJSON alloc] init];
-    
-    NSURL *url = [NSURL URLWithString:@"http://flak.heroku.com/messages.json?kind=message"];
-    
+
+	NSString *myUrl = [NSString stringWithFormat:@"http://flak.heroku.com/messages.json?kind=message&after_id=%@", maxMessageId];
+
+    NSURL *url = [NSURL URLWithString:myUrl];
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
-    
+
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    
+
     //NSLog(@"jsonString: %@", jsonString);
-    
+
     NSArray *jsonArray = [parser objectWithString:jsonString];
     //NSLog(@"json array: %@", jsonArray);
-    
+
     NSMutableArray *messages = [[NSMutableDictionary alloc] init];
-    
+
     for (NSDictionary *messageDictionary in jsonArray) {
-        
+
         IPDCMessage *message = [[IPDCMessage alloc] initWithJsonDictionary:messageDictionary];
-		
+
         NSLog(@"new message: %@", message);
-        
+
 		self.flakManager.currentMessage = message;
 		[self.flakManager.rootViewController insertNewObject];
-		
+
         [message release];
     }
-    
+
     NSLog(@"chat messages: %@", messages);
     [messages release];
     [parser release];
-	
+
 }
 
 - (void)testForFlakServer:(NSString *)hostURL {

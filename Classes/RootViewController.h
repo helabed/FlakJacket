@@ -23,4 +23,6 @@
 
 
 - (void)insertNewObject;
+- (NSNumber *)getMaxMessageId;
+
 @end

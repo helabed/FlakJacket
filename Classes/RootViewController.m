@@ -106,6 +106,7 @@
 #pragma mark -
 #pragma mark Add a new object
 
+
 - (void)insertNewObject {
 	
 	// Create a new instance of the entity managed by the fetched results controller.
@@ -254,6 +255,54 @@
 
 #pragma mark -
 #pragma mark Fetched results controller
+
+- (NSNumber *)getMaxMessageId {
+	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:context];
+	[request setEntity:entity];
+
+	// Specify that the request should return dictionaries.
+	[request setResultType:NSDictionaryResultType];
+
+	// Create an expression for the key path.
+	NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"messageId"];
+
+	// Create an expression to represent the minimum value at the key path 'creationDate'
+	NSExpression *maxExpression = [NSExpression expressionForFunction:@"max:" arguments:[NSArray arrayWithObject:keyPathExpression]];
+
+	// Create an expression description using the minExpression and returning a date.
+	NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+
+	// The name is the key that will be used in the dictionary for the return value.
+	[expressionDescription setName:@"maxMessageId"];
+	[expressionDescription setExpression:maxExpression];
+	[expressionDescription setExpressionResultType:NSInteger16AttributeType];
+
+	// Set the request's properties to fetch just the property represented by the expressions.
+	[request setPropertiesToFetch:[NSArray arrayWithObject:expressionDescription]];
+
+	// Execute the fetch.
+	NSError *error;
+	NSNumber *maxValueReturned;
+	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&error];
+	if (objects == nil) {
+		// Handle the error.
+		NSLog(@"We got nil objects after the executeFetchRequest");
+	}
+	else {
+		if ([objects count] > 0) {
+			maxValueReturned = [[objects objectAtIndex:0] valueForKey:@"maxMessageId"];
+			//NSLog(@"Maximumu messageId: %@", [[objects objectAtIndex:0] valueForKey:@"maxMessageId"]);
+			NSLog(@"Maximumu messageId: %@", maxValueReturned);
+		}
+	}
+	[expressionDescription release];
+	[request release];
+
+	return maxValueReturned;
+}
 
 - (NSFetchedResultsController *)fetchedResultsController {
     
