@@ -41,6 +41,7 @@
 		37E5CE1310C387E9005D278F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE1010C387E9005D278F /* Message.m */; };
 		37E5CE8A10C3990A005D278F /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CE8810C3990A005D278F /* MessageViewController.m */; };
 		37E5CE8B10C3990A005D278F /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E5CE8910C3990A005D278F /* MessageViewController.xib */; };
+		DC08AAAB10CC56D60023EE9C /* UserPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DC08AAAA10CC56D60023EE9C /* UserPreferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,8 @@
 		37E5CE8810C3990A005D278F /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		37E5CE8910C3990A005D278F /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MessageViewController.xib; path = Classes/MessageViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* blankCoreData-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "blankCoreData-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		DC08AAA910CC56D60023EE9C /* UserPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferences.h; sourceTree = "<group>"; };
+		DC08AAAA10CC56D60023EE9C /* UserPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				37E5CD3E10C37771005D278F /* FlakManager.m */,
 				37E5CE8710C3990A005D278F /* MessageViewController.h */,
 				37E5CE8810C3990A005D278F /* MessageViewController.m */,
+				DC08AAA910CC56D60023EE9C /* UserPreferences.h */,
+				DC08AAAA10CC56D60023EE9C /* UserPreferences.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				37E5CE1210C387E9005D278F /* User.m in Sources */,
 				37E5CE1310C387E9005D278F /* Message.m in Sources */,
 				37E5CE8A10C3990A005D278F /* MessageViewController.m in Sources */,
+				DC08AAAB10CC56D60023EE9C /* UserPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
