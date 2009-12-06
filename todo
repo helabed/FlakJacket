@@ -31,3 +31,5 @@
 -scroll to grab more messages
 -move CoreData code into a model class or Core Data manager
 -get rid of message from NIB
+-incorporate Eric's gists
+-escape post message body
