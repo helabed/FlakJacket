@@ -32,7 +32,7 @@
 }
 - (IBAction)testGettingMessages{
 	[self initAndGetCookies];
-	[self retrieveNextTenMessages];
+	[self retrieveNextMessages];
 }
 
 - (IBAction)testPostHelloFromHani{
@@ -61,9 +61,10 @@
     [self postToFlak:urlString 
 		  jsonString: jsonStringForSessionCreation];
 }
+
 - (void)postMessage:(NSString *)messageBody {
-	
-	
+	[self initAndGetCookies];
+
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 								[NSDictionary dictionaryWithObjectsAndKeys:
 								 @"hani@mani.com", @"user_id", 
@@ -187,7 +188,7 @@
     [pool drain];
 	
 }
-- (void)retrieveNextTenMessages {
+- (void)retrieveNextMessages {
 
 	NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
 

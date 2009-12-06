@@ -26,7 +26,7 @@
 - (IBAction)testPostHelloFromHani;
 
 - (void)testForFlakServer:(NSString *)hostURL;
-- (void)retrieveNextTenMessages;
+- (void)retrieveNextMessages;
 - (void)initAndGetCookies;
 - (void)createNewAccount;
 - (void)createNewSessionForLogin;

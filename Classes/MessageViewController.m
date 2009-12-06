@@ -56,14 +56,12 @@
 
 - (IBAction)done { 
 	//[[self parentViewController] dismissModalViewControllerAnimated:YES]; 
-	
 	NSLog(@"done method invoked");
-	
 	[self.navigationController popViewControllerAnimated:YES];
 
 	if( [self parentViewController] != nil ) {
 		[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
-      [self.flakManager.firstViewController retrieveNextTenMessages];
+		[self.flakManager.firstViewController retrieveNextMessages];
 		[[self parentViewController] dismissModalViewControllerAnimated:YES];
 	}
 } 
