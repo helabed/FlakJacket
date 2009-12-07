@@ -11,16 +11,19 @@
     -done
 -ability to post message without user explicitly logging in
   -done
-
 -create new login
   -store in preferences
     -done
   -persist preferences
-
--session keep alive
+    -done
 -track preferences
   -user preferences
+    -done
   -host preferences
+    -done
+
+-expose host url in preferences
+-session keep alive
 
 -change "done" button to "Post"
 -tab labels
