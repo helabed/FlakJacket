@@ -11,7 +11,7 @@
 
 @implementation UserPreferencesViewController
 
-@synthesize preferences;
+@synthesize preferences, firstNameTextField, lastNameTextField, emailAddressTextField, passwordTextField;
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
@@ -25,11 +25,15 @@
 
 // used to update the user feedback( or outcome message ).
 - (void)textFieldDidEndEditing:(UITextField *)textField { 
-	NSLog(@"textFieldDidEndEditing method invoked");
+	NSLog(@"textFieldDidEndEditing method invoked: %@", textField.text);
 
-	if(textField == self.preferences.emailAddress) {	
+	if (textField == self.firstNameTextField) {
+		self.preferences.firstName = textField.text;
+	} else if (textField == self.lastNameTextField) {
+		self.preferences.lastName = textField.text;
+	} else if(textField == self.emailAddressTextField) {
 		self.preferences.emailAddress = textField.text;
-	} else if(textField == self.preferences.password){
+	} else if(textField == self.passwordTextField){
 		self.preferences.password = textField.text;
 	}
 }

@@ -12,10 +12,11 @@
 #import "IPDCUser.h"
 #import "FlakManager.h"
 #import "RootViewController.h"
+#import "UserPreferences.h"
 
 @implementation FirstViewController
 
-@synthesize flakManager;
+@synthesize flakManager, preferences;
 
 - (IBAction)testFlak{
 	[self testForFlakServer:@"http://flak.heroku.com"];
@@ -35,17 +36,17 @@
 	[self retrieveNextMessages];
 }
 
-- (IBAction)testPostHelloFromHani{
+- (IBAction)testPostHelloFromUser{
 	[self initAndGetCookies];
-	[self postAHelloFromHani];
+	[self postAHelloFromUser];
 }
 
 - (IPDCUser *) getUser{
     IPDCUser *user = [[IPDCUser alloc] init];
-    user.firstName = @"hani";
-    user.lastName = @"mani";
-    user.email = @"hani@mani.com";
-    user.password = @"hanimani";
+	user.firstName = self.preferences.firstName;
+	user.lastName = self.preferences.lastName;
+    user.email = self.preferences.emailAddress;
+    user.password = self.preferences.password;
 	return user;
 }
 
@@ -53,9 +54,7 @@
     IPDCUser *user = [self getUser];
 	
     NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
-    
     NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    
     NSString *urlString = @"http://flak.heroku.com/session.json";
 	
     [self postToFlak:urlString 
@@ -64,27 +63,25 @@
 
 - (void)postMessage:(NSString *)messageBody {
 	[self initAndGetCookies];
+	IPDCUser *user = [self getUser];
 
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 								[NSDictionary dictionaryWithObjectsAndKeys:
-								 @"hani@mani.com", @"user_id", 
+								 user.email, @"user_id",
 								 messageBody, @"body", 
 								 nil],
                                 @"message", nil];
     
     SBJSON *parser = [[SBJSON alloc] init];
-    
     NSString *newJsonString = [parser stringWithObject:dictionary];
     
-    //NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
+    // NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
     
     [parser release];
-    
     NSLog(@"newJsonString: %@", newJsonString);
 	
-	//NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
-    
-    //NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
+	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
+    // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
     
     NSString *urlString = @"http://flak.heroku.com/messages.json";
 	
@@ -93,29 +90,26 @@
 }
 
 
-- (void)postAHelloFromHani{
-
+- (void)postAHelloFromUser{
+	IPDCUser *user = [self getUser];
+	NSString *message = [NSString stringWithFormat:@"Hello from %@ %@", user.firstName, user.lastName];
 	
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 								[NSDictionary dictionaryWithObjectsAndKeys:
-								 @"hani@mani.com", @"user_id", 
-								 @"Hello from Hani Mani", @"body", 
+								 user.email, @"user_id",
+								 message, @"body",
 								 nil],
                                 @"message", nil];
     
     SBJSON *parser = [[SBJSON alloc] init];
-    
     NSString *newJsonString = [parser stringWithObject:dictionary];
-    
     //NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
     
     [parser release];
-    
     NSLog(@"newJsonString: %@", newJsonString);
 	
-	//NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
-    
-    //NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
+	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
+    // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
     
     NSString *urlString = @"http://flak.heroku.com/messages.json";
 	
@@ -123,15 +117,10 @@
 		  jsonString: newJsonString];
 }
 
-
-
 - (void)createNewAccount{
     IPDCUser *user = [self getUser];
-
     NSString *jsonStringForUser = [user jsonStringForUserCreation];
-    
-    NSLog(@"jsonStringForUser: %@", jsonStringForUser);
-    
+	NSLog(@"createNewAccount: %@", jsonStringForUser);
     NSString *urlString = @"http://flak.heroku.com/users.json";
 
     [self postToFlak:urlString 
@@ -166,36 +155,21 @@
 
 - (void)initAndGetCookies{
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	
-    //IPDCMessageManager *messageManager = [[IPDCMessageManager alloc] init];
-    
+    // IPDCMessageManager *messageManager = [[IPDCMessageManager alloc] init];
+
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-    
+
     NSURL *url = [NSURL URLWithString:@"http://flak.heroku.com"];
-    
     NSLog(@"cookies: %@", [cookieStorage cookiesForURL:url]);
-    
-    //[messageManager userCreationFlakTest];
-    //[messageManager sessionCreationFlakTest];
-	
-    //[messageManager messageCreateFlakTestTouch];
-    //[messageManager retrieveNextTenMessages];
-    
-    //[messageManager sessionDestroyFlakTest];
-    //[messageManager release];
-    
     [pool drain];
-	
 }
+
 - (void)retrieveNextMessages {
-
 	NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
-
 	NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
 
     SBJSON *parser = [[SBJSON alloc] init];
-
 	NSString *myUrl = [NSString stringWithFormat:@"http://flak.heroku.com/messages.json?kind=message&after_id=%@", maxMessageId];
 
     NSURL *url = [NSURL URLWithString:myUrl];
@@ -208,22 +182,19 @@
     NSString *jsonString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 
     //NSLog(@"jsonString: %@", jsonString);
-
     NSArray *jsonArray = [parser objectWithString:jsonString];
     //NSLog(@"json array: %@", jsonArray);
-
     NSMutableArray *messages = [[NSMutableDictionary alloc] init];
 
     for (NSDictionary *messageDictionary in jsonArray) {
-
         IPDCMessage *message = [[IPDCMessage alloc] initWithJsonDictionary:messageDictionary];
 
-        NSLog(@"new message: %@", message);
-
-		self.flakManager.currentMessage = message;
-		[self.flakManager.rootViewController insertNewObject];
-
-        [message release];
+		if(![message.messageText isEqual:[NSNull null]]) {
+			[message logMessage];
+			self.flakManager.currentMessage = message;
+			[self.flakManager.rootViewController insertNewObject];
+			[message release];
+		}
     }
 
     NSLog(@"chat messages: %@", messages);
@@ -233,16 +204,13 @@
 }
 
 - (void)testForFlakServer:(NSString *)hostURL {
-	
     NSString *urlString = [NSString stringWithFormat:@"%@/flak", hostURL];
     NSLog(@"urlString: %@", urlString);
 	
     NSURL *url = [NSURL URLWithString:urlString];
-	
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	
     NSHTTPURLResponse *response = nil;
-	
     NSError *error = nil;
 	
     [NSURLConnection sendSynchronousRequest:request 
@@ -250,16 +218,7 @@
                                       error:&error];
 	
     NSInteger statusCode = [response statusCode];
-	
     NSLog(@"statusCode: %d", statusCode);
-	
-//    if (statusCode == 200) {
-//        return YES;
-//    } else {
-//        return NO;
-//    }
-	
-	
 }
 
 /*
@@ -283,7 +242,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	assert( flakManager != nil );
+	assert(flakManager != nil);
+	assert(preferences != nil);
 }
 
 

@@ -108,24 +108,23 @@
 
 
 - (void)insertNewObject {
-	
 	// Create a new instance of the entity managed by the fetched results controller.
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 	NSEntityDescription *entity = [[fetchedResultsController fetchRequest] entity];
 	NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 	
-	// If appropriate, configure the new managed object.
-
-	
-	// hani
-	//[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-	
-	//NSLog(@"currentMessage: %@", self.flakManager.currentMessage);
-	
 	[newManagedObject setValue:self.flakManager.currentMessage.kind forKey:@"kind"];
 	[newManagedObject setValue:self.flakManager.currentMessage.lastName forKey:@"lastName"];
 	[newManagedObject setValue:self.flakManager.currentMessage.firstName forKey:@"firstName"];
 	[newManagedObject setValue:self.flakManager.currentMessage.userId forKey:@"userId"];
+
+	if([self.flakManager.currentMessage.messageText isEqual:[NSNull null]]) {
+		NSLog(@"Clearing NSNull message text.");
+		self.flakManager.currentMessage.messageText = @"";
+	} else {
+		NSLog(@"value: %@", self.flakManager.currentMessage.messageText);
+	}
+
 	[newManagedObject setValue:self.flakManager.currentMessage.messageText forKey:@"messageText"];
 	[newManagedObject setValue:self.flakManager.currentMessage.messageId forKey:@"messageId"];
 	[newManagedObject setValue:self.flakManager.currentMessage.dateTime forKey:@"dateTime"];

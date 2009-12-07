@@ -11,6 +11,6 @@
 
 @implementation UserPreferences
 
-@synthesize emailAddress, password;
+@synthesize firstName, lastName, emailAddress, password;
 
 @end

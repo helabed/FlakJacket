@@ -14,6 +14,8 @@
 
 -create new login
   -store in preferences
+    -done
+  -persist preferences
 
 -session keep alive
 -track preferences
@@ -34,3 +36,4 @@
 -get rid of message from NIB
 -incorporate Eric's gists
 -escape post message body
+-map tab key to jump between fields in preferences view

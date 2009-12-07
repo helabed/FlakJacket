@@ -37,5 +37,6 @@
 - (NSString *)jsonStringForMessageCreation;
 - (NSDictionary *)messageDictionary;
 - (BOOL)isChatMessage;
+- (void)logMessage;
 
 @end

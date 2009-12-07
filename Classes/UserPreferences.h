@@ -10,10 +10,14 @@
 
 
 @interface UserPreferences : NSObject {
+	NSString *firstName;
+	NSString *lastName;
 	NSString *emailAddress;
 	NSString *password;
 }
 
+@property(nonatomic, retain) NSString *firstName;
+@property(nonatomic, retain) NSString *lastName;
 @property(nonatomic, retain) NSString *emailAddress;
 @property(nonatomic, retain) NSString *password;
 

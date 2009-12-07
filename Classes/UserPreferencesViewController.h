@@ -11,8 +11,16 @@
 
 @interface UserPreferencesViewController : UIViewController <UITextFieldDelegate> {
 	UserPreferences *preferences;
+	UITextField *firstNameTextField;
+	UITextField *lastNameTextField;
+	UITextField *emailAddressTextField;
+	UITextField *passwordTextField;
 }
 
 @property(nonatomic, retain) IBOutlet UserPreferences *preferences;
+@property(nonatomic, retain) IBOutlet UITextField *firstNameTextField;
+@property(nonatomic, retain) IBOutlet UITextField *lastNameTextField;
+@property(nonatomic, retain) IBOutlet UITextField *emailAddressTextField;
+@property(nonatomic, retain) IBOutlet UITextField *passwordTextField;
 
 @end

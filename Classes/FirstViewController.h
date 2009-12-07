@@ -10,20 +10,22 @@
 
 @class IPDCUser;
 @class FlakManager;
+@class UserPreferences;
 
 @interface FirstViewController : UIViewController {
-
 	FlakManager *flakManager;
-
+	UserPreferences *preferences;
 }
-@property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
+
+@property(nonatomic, retain) IBOutlet FlakManager *flakManager;
+@property(nonatomic, retain) IBOutlet UserPreferences *preferences;
 
 
 - (IBAction)testFlak;
 - (IBAction)testCreateNewAccount;
 - (IBAction)testGettingMessages;
 - (IBAction)testLogin;
-- (IBAction)testPostHelloFromHani;
+- (IBAction)testPostHelloFromUser;
 
 - (void)testForFlakServer:(NSString *)hostURL;
 - (void)retrieveNextMessages;
@@ -32,6 +34,7 @@
 - (void)createNewSessionForLogin;
 - (void)postToFlak: (NSString *) urlString jsonString: (NSString *) jsonStringToUse; 
 - (IPDCUser *)getUser;
-- (void)postAHelloFromHani;
+- (void)postAHelloFromUser;
 - (void)postMessage:(NSString *)messageBody;
+
 @end

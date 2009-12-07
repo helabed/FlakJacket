@@ -21,6 +21,18 @@
 @synthesize firstName;
 @synthesize lastName;
 
+-(void) logMessage {
+	NSLog(@"=======================================");
+	NSLog(@"messageId: %@", messageId);
+	NSLog(@"kind: %@", kind);
+	NSLog(@"dateTime: %@", dateTime);
+	NSLog(@"userId: %@", userId);
+	NSLog(@"messageText: %@", messageText);
+	NSLog(@"firstName: %@", firstName);
+	NSLog(@"lastName: %@", lastName);
+	NSLog(@"=======================================");
+}
+
 - (id)initWithJsonDictionary:(NSDictionary *)message {
     if (self = [super init]) {
         NSDictionary *messageDictionary = [message objectForKey:@"message"];
