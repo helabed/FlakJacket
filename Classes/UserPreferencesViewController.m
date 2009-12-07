@@ -36,6 +36,7 @@
 	} else if(textField == self.passwordTextField){
 		self.preferences.password = textField.text;
 	}
+	[self.preferences saveUserDefaultsToPlist];
 }
 
 #pragma mark -

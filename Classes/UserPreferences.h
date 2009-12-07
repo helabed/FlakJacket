@@ -21,4 +21,6 @@
 @property(nonatomic, retain) NSString *emailAddress;
 @property(nonatomic, retain) NSString *password;
 
+- (void)saveUserDefaultsToPlist;
+
 @end

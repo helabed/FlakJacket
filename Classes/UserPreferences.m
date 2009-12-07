@@ -13,6 +13,7 @@
 
 @synthesize firstName, lastName, emailAddress, password;
 
+
 - (void)createUserDefaultsFromPlist {
     NSString *settingsPlistPath = [[NSBundle mainBundle]
                                    pathForResource:@"FlakSettings" ofType:@"plist"];
@@ -35,6 +36,26 @@
     [defaults setObject:[dictionaryFromDefaultPlist objectForKey:@"loginData"]
                  forKey:@"loginData"];
 }
+
+- (void)saveUserDefaultsToPlist {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSMutableDictionary *loginData = [userDefaults objectForKey:@"loginData"];
+	[loginData setObject:self.firstName forKey:@"firstName"];
+	[loginData setObject:self.lastName forKey:@"lastName"];
+	[loginData setObject:self.emailAddress forKey:@"emailAddress"];
+	[loginData setObject:self.password forKey:@"password"];
+	[userDefaults setObject:loginData
+					 forKey:@"loginData"];
+	
+	//NSString *settingsPlistPath = [[NSBundle mainBundle]
+    //                               pathForResource:@"FlakSettings" ofType:@"plist"];
+	
+	//[userDefaults writeToFile:settingsPlistPath atomically: YES];
+	//[userDefaults registerDefaults:userDefaults];
+	[userDefaults synchronize];
+
+}
+
 
 - (id)init {
 	NSLog(@"in init method");
