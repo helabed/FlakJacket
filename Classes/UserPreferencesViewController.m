@@ -61,6 +61,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	assert(preferences != nil);
+	self.emailAddressTextField.text = preferences.emailAddress;
+	self.passwordTextField.text = preferences.password;
+	self.firstNameTextField.text = preferences.firstName;
+	self.lastNameTextField.text = preferences.lastName;
 }
 
 /*
@@ -87,6 +91,5 @@
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end

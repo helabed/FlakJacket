@@ -45,6 +45,7 @@
 		DC08AAB610CC5AAB0023EE9C /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB510CC5AAB0023EE9C /* 09-chat2.png */; };
 		DC08AAB910CC5B2F0023EE9C /* 101-gameplan.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */; };
 		DC08AAC910CC5E1B0023EE9C /* UserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */; };
+		DCF17CD810CC8C0100FDA3B1 /* FlakSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCF17CD710CC8C0100FDA3B1 /* FlakSettings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "101-gameplan.png"; sourceTree = "<group>"; };
 		DC08AAC710CC5E1B0023EE9C /* UserPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferencesViewController.h; sourceTree = "<group>"; };
 		DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesViewController.m; sourceTree = "<group>"; };
+		DCF17CD710CC8C0100FDA3B1 /* FlakSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlakSettings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DCF17CD710CC8C0100FDA3B1 /* FlakSettings.plist */,
 				DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */,
 				DC08AAB510CC5AAB0023EE9C /* 09-chat2.png */,
 				DC08AAB210CC5A3E0023EE9C /* 19-gear.png */,
@@ -335,6 +338,7 @@
 				DC08AAB310CC5A3E0023EE9C /* 19-gear.png in Resources */,
 				DC08AAB610CC5AAB0023EE9C /* 09-chat2.png in Resources */,
 				DC08AAB910CC5B2F0023EE9C /* 101-gameplan.png in Resources */,
+				DCF17CD810CC8C0100FDA3B1 /* FlakSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
