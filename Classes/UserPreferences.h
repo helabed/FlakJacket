@@ -14,12 +14,14 @@
 	NSString *lastName;
 	NSString *emailAddress;
 	NSString *password;
+	NSString *hostUrl;
 }
 
 @property(nonatomic, retain) NSString *firstName;
 @property(nonatomic, retain) NSString *lastName;
 @property(nonatomic, retain) NSString *emailAddress;
 @property(nonatomic, retain) NSString *password;
+@property(nonatomic, retain) NSString *hostUrl;
 
 - (void)saveUserDefaultsToPlist;
 

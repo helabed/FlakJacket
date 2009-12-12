@@ -15,6 +15,7 @@
 	UITextField *lastNameTextField;
 	UITextField *emailAddressTextField;
 	UITextField *passwordTextField;
+	UITextField *hostUrlTextField;
 }
 
 @property(nonatomic, retain) IBOutlet UserPreferences *preferences;
@@ -22,5 +23,6 @@
 @property(nonatomic, retain) IBOutlet UITextField *lastNameTextField;
 @property(nonatomic, retain) IBOutlet UITextField *emailAddressTextField;
 @property(nonatomic, retain) IBOutlet UITextField *passwordTextField;
+@property(nonatomic, retain) IBOutlet UITextField *hostUrlTextField;
 
 @end

@@ -12,6 +12,7 @@
 @implementation UserPreferencesViewController
 
 @synthesize preferences, firstNameTextField, lastNameTextField, emailAddressTextField, passwordTextField;
+@synthesize hostUrlTextField;
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
@@ -35,6 +36,8 @@
 		self.preferences.emailAddress = textField.text;
 	} else if(textField == self.passwordTextField){
 		self.preferences.password = textField.text;
+	} else if(textField == self.hostUrlTextField){
+		self.preferences.hostUrl = textField.text;
 	}
 	[self.preferences saveUserDefaultsToPlist];
 }
@@ -66,6 +69,7 @@
 	self.passwordTextField.text = preferences.password;
 	self.firstNameTextField.text = preferences.firstName;
 	self.lastNameTextField.text = preferences.lastName;
+	self.hostUrlTextField.text = preferences.hostUrl;
 }
 
 /*

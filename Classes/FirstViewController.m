@@ -43,11 +43,11 @@
 
 - (IPDCUser *) getUser{
     IPDCUser *user = [[IPDCUser alloc] init];
-	user.firstName = self.preferences.firstName;
-	user.lastName = self.preferences.lastName;
+    user.firstName = self.preferences.firstName;
+    user.lastName = self.preferences.lastName;
     user.email = self.preferences.emailAddress;
     user.password = self.preferences.password;
-	return user;
+    return user;
 }
 
 - (void)createNewSessionForLogin{
