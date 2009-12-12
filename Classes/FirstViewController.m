@@ -62,7 +62,10 @@
 }
 
 - (void)postMessage:(NSString *)messageBody {
+	// the 2 statements below can be removed once we have a timer that maintains the session.
 	[self initAndGetCookies];
+	[self createNewSessionForLogin];
+
 	IPDCUser *user = [self getUser];
 
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -71,20 +74,20 @@
 								 messageBody, @"body", 
 								 nil],
                                 @"message", nil];
-    
+
     SBJSON *parser = [[SBJSON alloc] init];
     NSString *newJsonString = [parser stringWithObject:dictionary];
-    
+
     // NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
-    
+
     [parser release];
     NSLog(@"newJsonString: %@", newJsonString);
-	
+
 	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    
+
     NSString *urlString = @"http://flak.heroku.com/messages.json";
-	
+
     [self postToFlak:urlString 
 		  jsonString: newJsonString];
 }
