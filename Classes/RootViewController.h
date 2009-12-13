@@ -14,6 +14,8 @@
 	FlakManager *flakManager;
 	MessageViewController *messageViewController;
 	UITableViewCell *nibLoadedCell;
+	UIView *headerView;
+	UITableView *tableView;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -22,8 +24,12 @@
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
 @property (nonatomic, retain) IBOutlet  MessageViewController *messageViewController;
 @property (nonatomic, retain) IBOutlet  UITableViewCell *nibLoadedCell;
+@property (nonatomic, retain) IBOutlet	UIView *headerView;
+@property (nonatomic, retain) IBOutlet  UITableView *tableView;
+
 
 - (void)insertNewObject;
 - (NSNumber *)getMaxMessageId;
 
+- (IBAction)getNewestMessages;
 @end

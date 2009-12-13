@@ -10,6 +10,7 @@
 #import "FlakManager.h"
 #import "IPDCMessage.h"
 #import "MessageViewController.h"
+#import "FirstViewController.h"
 
 
 @implementation RootViewController
@@ -18,6 +19,8 @@
 @synthesize flakManager;
 @synthesize messageViewController;
 @synthesize nibLoadedCell;
+@synthesize fetchedResultsController, managedObjectContext;
+@synthesize headerView, tableView;
 
 
 #pragma mark -
@@ -27,20 +30,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	
+	assert(headerView != nil );
+	assert(tableView != nil );
+
 	assert( flakManager != nil );
 	assert( messageViewController != nil );
-	
+
 	// Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-																			   target:self 
+
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+																			   target:self
 																			   action:@selector(addMessageAction)];
-																			   //action:@selector(insertNewObject)];
-    self.navigationItem.rightBarButtonItem = addButton;
+
+	self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
-	
+
+	CGRect headerFrame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width,
+									self.headerView.frame.size.height);
+
+	self.headerView.frame = headerFrame;
+	self.tableView.tableHeaderView = self.headerView;
+
 	NSError *error = nil;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		/*
@@ -68,6 +79,11 @@
 	[self presentModalViewController:self.messageViewController animated:YES]; 
 	
 	NSLog(@"after call to Modal Dialog messageViewController");	
+}
+
+- (IBAction)getNewestMessages {
+	NSLog(@"getNewestMessages invoked");
+	[self.flakManager.firstViewController retrieveNextMessages];
 }
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -163,11 +179,11 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)atableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [atableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 
@@ -412,6 +428,8 @@
 	
 	[fetchedResultsController release];
 	[managedObjectContext release];
+	[headerView release];
+	[tableView release];
     [super dealloc];
 }
 
