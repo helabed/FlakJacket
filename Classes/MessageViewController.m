@@ -13,7 +13,6 @@
 @implementation MessageViewController
 
 @synthesize messageText;
-@synthesize userId;
 @synthesize firstName;
 @synthesize lastName;
 
@@ -111,7 +110,6 @@
 
 - (void)dealloc {
 	[messageText dealloc];
-	[userId dealloc];
 	[firstName dealloc];
 	[lastName dealloc];
 
