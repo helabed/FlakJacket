@@ -73,7 +73,6 @@
 #pragma mark UITextViewDelegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-	NSLog(@"======================= textViewDidEndEditing method invoked");
 	if(textView == self.messageText) {
 		self.flakManager.currentMessage.messageText = textView.text;
 	}

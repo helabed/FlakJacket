@@ -10,16 +10,16 @@
 
 @class FlakManager;
 
-@interface MessageViewController : UIViewController  <UITextFieldDelegate,UITextViewDelegate> {
-	UITextView    *messageText;
-	UITextField    *firstName;
-	UITextField    *lastName;
-	FlakManager    *flakManager;
+@interface MessageViewController : UIViewController {
+	UITextView *messageText;
+	UITextField *firstName;
+	UITextField *lastName;
+	FlakManager *flakManager;
 }
 
-@property (nonatomic, retain) IBOutlet UITextView    *messageText;
-@property (nonatomic, retain) IBOutlet UITextField    *firstName;
-@property (nonatomic, retain) IBOutlet UITextField    *lastName;
+@property (nonatomic, retain) IBOutlet UITextView *messageText;
+@property (nonatomic, retain) IBOutlet UITextField *firstName;
+@property (nonatomic, retain) IBOutlet UITextField *lastName;
 
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
 

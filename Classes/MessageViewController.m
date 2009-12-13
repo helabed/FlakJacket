@@ -56,46 +56,6 @@
 	return YES;
 }
 
-#pragma mark -
-#pragma mark UITextFieldDelegate
-
-// use this to do validation before the keyborard goes away.
-- (BOOL)textFieldShouldReturn:(UITextField *)textField { 
-	NSLog(@"textFieldShouldReturn method invoked");
-	[textField resignFirstResponder]; 
-	return YES;
-}
-
-// used to update the user feedback( or outcome message ).
-- (void)textFieldDidEndEditing:(UITextField *)textField { 
-	NSLog(@"textFieldDidEndEditing method invoked");
-	if(textField == self.firstName) {
-		self.firstName =  textField;	
-	} else if( textField == self.lastName) {
-		self.lastName = textField;
-	}
-}
-
-#pragma mark -
-#pragma mark UITextViewDelegate
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-	NSLog(@"textViewDidEndEditing method invoked");
-	if(textView == self.messageText) {
-		self.flakManager.currentMessage.messageText = textView.text;
-	}
-	[textView resignFirstResponder];
-}
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
-												replacementText:(NSString *)text {
-	if ([text isEqualToString:@"\n"]) {
-		[textView resignFirstResponder];
-		return NO;
-	}
-	return YES;
-}
-
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
