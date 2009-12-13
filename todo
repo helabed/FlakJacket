@@ -22,6 +22,8 @@
   -host preferences
     -done
 
+-Steve will: split the message view controller into a read and a write version
+
 -expose host url in preferences
 -session keep alive
 
