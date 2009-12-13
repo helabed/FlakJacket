@@ -100,7 +100,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Done</string>
+						<string key="IBUINormalTitle">Post</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -384,7 +384,6 @@
 							<string>flakManager</string>
 							<string>lastName</string>
 							<string>messageText</string>
-							<string>userId</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -392,7 +391,6 @@
 							<string>FlakManager</string>
 							<string>UITextField</string>
 							<string>UITextView</string>
-							<string>UITextField</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
