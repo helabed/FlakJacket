@@ -71,8 +71,7 @@
 #pragma mark UITextFieldDelegate
 
 // use this to do validation before the keyborard goes away.
-- (BOOL)textFieldShouldReturn:(UITextField *)textField { 
-	NSLog(@"textFieldShouldReturn method invoked");
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder]; 
 	return YES;
 }
