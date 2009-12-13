@@ -33,13 +33,14 @@
 
 - (void) updateMessage {
 	self.messageText.text = self.flakManager.currentMessage.messageText;
-	//self.userId.text = self.flakManager.currentMessage.userId;
+	// self.userId.text = self.flakManager.currentMessage.userId;
 	self.firstName.text = self.flakManager.currentMessage.firstName;
 	self.lastName.text = self.flakManager.currentMessage.lastName;	
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	NSLog(@"MCC: viewDidLoad");
 	[super viewDidLoad];
 	[self updateMessage];
 }

@@ -10,7 +10,7 @@
 
 @class FlakManager;
 
-@interface MessageCreationController : UITableViewController {
+@interface MessageCreationController : UIViewController  <UITextFieldDelegate,UITextViewDelegate> {
 	UITextView    *messageText;
 	UITextField    *userId;
 	UITextField    *firstName;
