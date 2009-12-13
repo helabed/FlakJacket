@@ -97,6 +97,7 @@
 	// the 2 statements below can be removed once we have a timer that maintains the session.
 	[self initAndGetCookies];
 	[self createNewSessionForLogin];
+
 	IPDCUser *user = [self getUser];
 	NSString *message = [NSString stringWithFormat:@"Hello from %@ %@", user.firstName, user.lastName];
 	
@@ -172,6 +173,10 @@
 }
 
 - (void)retrieveNextMessages {
+    // the 2 statements below can be removed once we have a timer that maintains the session.
+    [self initAndGetCookies];
+    [self createNewSessionForLogin];
+
     NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
     NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
 

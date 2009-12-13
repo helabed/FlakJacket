@@ -20,6 +20,7 @@
 @synthesize messageText;
 @synthesize firstName;
 @synthesize lastName;
+@synthesize dateFormatter;
 
 -(void) logMessage {
 	NSLog(@"=======================================");
@@ -33,12 +34,43 @@
 	NSLog(@"=======================================");
 }
 
+- (NSDate *) createLocalDate:(NSDictionary *)messageDictionary forKey:(NSString *)key {
+
+    NSDate *sourceDate;
+    NSTimeZone *sourceTimeZone;
+    NSTimeZone *destinationTimeZone;
+    NSInteger sourceGMTOffset;
+    NSInteger destinationGMTOffset;
+    NSTimeInterval interval;
+    NSDate *destinationDate;
+
+    // The create date of the message returned by the Flak server
+    sourceDate = [self.dateFormatter dateFromString:[messageDictionary objectForKey:key]];
+
+    sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    destinationTimeZone = [NSTimeZone systemTimeZone];
+
+    sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    interval = destinationGMTOffset - sourceGMTOffset;
+
+    destinationDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate] autorelease];
+    return destinationDate;
+}
+
 - (id)initWithJsonDictionary:(NSDictionary *)message {
+	//In the init method of something
+	self.dateFormatter = [[NSDateFormatter alloc] init];
+	self.dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+
     if (self = [super init]) {
         NSDictionary *messageDictionary = [message objectForKey:@"message"];
         self.messageId   = [messageDictionary objectForKey:@"id"];
         self.kind = [messageDictionary objectForKey:@"kind"];
-        self.dateTime = [NSDate dateWithNaturalLanguageString:[messageDictionary objectForKey:@"created_at"]];
+        //self.dateTime = [NSDate dateWithNaturalLanguageString:[messageDictionary objectForKey:@"created_at"]];
+
+        self.dateTime = [self createLocalDate:messageDictionary forKey:@"created_at"];
+
         self.userId   = [messageDictionary objectForKey:@"user_id"];
         self.messageText = [messageDictionary objectForKey:@"body"];
         self.firstName = [messageDictionary objectForKey:@"user_first_name"];
@@ -52,7 +84,8 @@
 - (id)initWithJsonArray:(NSMutableArray *)messageArray {
     if (self = [super init]) {
         self.messageId   = [messageArray objectAtIndex:0];
-        self.dateTime = [NSDate dateWithNaturalLanguageString:[messageArray objectAtIndex:1]];
+        //self.dateTime = [NSDate dateWithNaturalLanguageString:[messageArray objectAtIndex:1]];
+        self.dateTime = [self createLocalDate:([messageArray objectAtIndex:1]) forKey:@"created_at"];
         self.userId   = [messageArray objectAtIndex:2];
         self.messageText = [messageArray objectAtIndex:3];
     }

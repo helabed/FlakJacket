@@ -20,6 +20,7 @@
     NSString    *firstName;
     NSString    *lastName;  
     NSString    *messageText;
+    NSDateFormatter* dateFormatter;
 }
 
 @property (nonatomic, retain) NSNumber  *messageId;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) NSString *firstName;
 @property (nonatomic, retain) NSString *lastName;
 @property (nonatomic, retain) NSString  *messageText;
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
 
 
 - (id)initWithJsonDictionary:(NSDictionary *)messageDictionary;
