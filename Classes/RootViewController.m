@@ -19,7 +19,6 @@
 @synthesize flakManager;
 @synthesize messageViewController, messageCreationController;
 @synthesize nibLoadedCell;
-@synthesize fetchedResultsController, managedObjectContext;
 @synthesize headerView, tableView;
 
 #pragma mark -
