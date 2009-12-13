@@ -19,7 +19,7 @@
 @synthesize flakManager, preferences;
 
 - (IBAction)testFlak{
-	[self testForFlakServer:@"http://flak.heroku.com"];
+	[self testForFlakServer:self.preferences.hostUrl];
 }
 
 - (IBAction)testCreateNewAccount{
@@ -55,7 +55,7 @@
 	
     NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    NSString *urlString = @"http://flak.heroku.com/session.json";
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/session.json"];
 	
     [self postToFlak:urlString 
 		  jsonString: jsonStringForSessionCreation];
@@ -86,7 +86,7 @@
 	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
 
-    NSString *urlString = @"http://flak.heroku.com/messages.json";
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
 
     [self postToFlak:urlString 
 		  jsonString: newJsonString];
@@ -114,7 +114,7 @@
 	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
     
-    NSString *urlString = @"http://flak.heroku.com/messages.json";
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
 	
     [self postToFlak:urlString 
 		  jsonString: newJsonString];
@@ -123,8 +123,8 @@
 - (void)createNewAccount{
     IPDCUser *user = [self getUser];
     NSString *jsonStringForUser = [user jsonStringForUserCreation];
-	NSLog(@"createNewAccount: %@", jsonStringForUser);
-    NSString *urlString = @"http://flak.heroku.com/users.json";
+    NSLog(@"createNewAccount: %@", jsonStringForUser);
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/users.json"];
 
     [self postToFlak:urlString 
 		  jsonString: jsonStringForUser];
@@ -163,17 +163,18 @@
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 
-    NSURL *url = [NSURL URLWithString:@"http://flak.heroku.com"];
+    NSURL *url = [NSURL URLWithString:self.preferences.hostUrl];
     NSLog(@"cookies: %@", [cookieStorage cookiesForURL:url]);
     [pool drain];
 }
 
 - (void)retrieveNextMessages {
-	NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
-	NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
+    NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
+    NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
 
     SBJSON *parser = [[SBJSON alloc] init];
-	NSString *myUrl = [NSString stringWithFormat:@"http://flak.heroku.com/messages.json?kind=message&after_id=%@", maxMessageId];
+    NSString *queryUrl = [self.preferences.hostUrl stringByAppendingString:@"/messages.json?kind=message&after_id=%@"];
+    NSString *myUrl = [NSString stringWithFormat:queryUrl, maxMessageId];
 
     NSURL *url = [NSURL URLWithString:myUrl];
 
