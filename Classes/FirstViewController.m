@@ -81,7 +81,6 @@
     // NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
 
     [parser release];
-    NSLog(@"newJsonString: %@", newJsonString);
 
 	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
@@ -92,36 +91,10 @@
 		  jsonString: newJsonString];
 }
 
-
 - (void)postAHelloFromUser{
-	// the 2 statements below can be removed once we have a timer that maintains the session.
-	[self initAndGetCookies];
-	[self createNewSessionForLogin];
-
 	IPDCUser *user = [self getUser];
 	NSString *message = [NSString stringWithFormat:@"Hello from %@ %@", user.firstName, user.lastName];
-	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSDictionary dictionaryWithObjectsAndKeys:
-								 user.email, @"user_id",
-								 message, @"body",
-								 nil],
-                                @"message", nil];
-    
-    SBJSON *parser = [[SBJSON alloc] init];
-    NSString *newJsonString = [parser stringWithObject:dictionary];
-    //NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
-    
-    [parser release];
-    NSLog(@"newJsonString: %@", newJsonString);
-	
-	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
-    // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    
-    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
-	
-    [self postToFlak:urlString 
-		  jsonString: newJsonString];
+	[self postMessage:message];
 }
 
 - (void)createNewAccount{
