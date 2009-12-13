@@ -1,4 +1,6 @@
--Steve will: split the message view controller into a read and a write version
+-move CoreData code into a model class or Core Data manager
+-get rid of currentMessage from NIB, use a better design
+
 -custom cells
   -reduce fonts of message
   -show person in bold top right corner
@@ -9,17 +11,10 @@
 -Add get next messages button at the top of table as per Eric's suggestion
   -scroll to grab more messages(see adding a get next messages button above)
 
--MessageViewController
-  -remove User ID
-  -split into 1 for writing and different 1 for viewing
-
 -session keep alive
--change "done" button to "Post"
 -tab labels
 -show failure or success message/alert
 -scroll to grab more messages(see adding a get next messages button above)
--move CoreData code into a model class or Core Data manager
--get rid of currentMessage from NIB, use a better design
 -incorporate Eric's gists
 -escape post message body to prevent it jason from hickuping if we have a " in the messageText body
 
@@ -60,4 +55,12 @@ ITEMS THAT ARE DONE ARE SHOW BELOW
     -done
 -expose host url in preferences
   -done
-
+-Steve will: split the message view controller into a read and a write version
+  -done
+-MessageViewController
+  -remove User ID
+    -done
+  -split into 1 for writing and different 1 for viewing
+    -done
+-change "done" button to "Post"
+  -done
