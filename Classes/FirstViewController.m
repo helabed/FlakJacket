@@ -19,7 +19,7 @@
 @synthesize flakManager, preferences;
 
 - (IBAction)testFlak{
-	[self testForFlakServer:@"http://flak.heroku.com"];
+	[self testForFlakServer:self.preferences.hostUrl];
 }
 
 - (IBAction)testCreateNewAccount{
@@ -43,11 +43,11 @@
 
 - (IPDCUser *) getUser{
     IPDCUser *user = [[IPDCUser alloc] init];
-	user.firstName = self.preferences.firstName;
-	user.lastName = self.preferences.lastName;
+    user.firstName = self.preferences.firstName;
+    user.lastName = self.preferences.lastName;
     user.email = self.preferences.emailAddress;
     user.password = self.preferences.password;
-	return user;
+    return user;
 }
 
 - (void)createNewSessionForLogin{
@@ -55,14 +55,17 @@
 	
     NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    NSString *urlString = @"http://flak.heroku.com/session.json";
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/session.json"];
 	
     [self postToFlak:urlString 
 		  jsonString: jsonStringForSessionCreation];
 }
 
 - (void)postMessage:(NSString *)messageBody {
+	// the 2 statements below can be removed once we have a timer that maintains the session.
 	[self initAndGetCookies];
+	[self createNewSessionForLogin];
+
 	IPDCUser *user = [self getUser];
 
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -71,26 +74,30 @@
 								 messageBody, @"body", 
 								 nil],
                                 @"message", nil];
-    
+
     SBJSON *parser = [[SBJSON alloc] init];
     NSString *newJsonString = [parser stringWithObject:dictionary];
-    
+
     // NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
-    
+
     [parser release];
     NSLog(@"newJsonString: %@", newJsonString);
-	
+
 	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    
-    NSString *urlString = @"http://flak.heroku.com/messages.json";
-	
+
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
+
     [self postToFlak:urlString 
 		  jsonString: newJsonString];
 }
 
 
 - (void)postAHelloFromUser{
+	// the 2 statements below can be removed once we have a timer that maintains the session.
+	[self initAndGetCookies];
+	[self createNewSessionForLogin];
+
 	IPDCUser *user = [self getUser];
 	NSString *message = [NSString stringWithFormat:@"Hello from %@ %@", user.firstName, user.lastName];
 	
@@ -111,7 +118,7 @@
 	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
     // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
     
-    NSString *urlString = @"http://flak.heroku.com/messages.json";
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
 	
     [self postToFlak:urlString 
 		  jsonString: newJsonString];
@@ -120,8 +127,8 @@
 - (void)createNewAccount{
     IPDCUser *user = [self getUser];
     NSString *jsonStringForUser = [user jsonStringForUserCreation];
-	NSLog(@"createNewAccount: %@", jsonStringForUser);
-    NSString *urlString = @"http://flak.heroku.com/users.json";
+    NSLog(@"createNewAccount: %@", jsonStringForUser);
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/users.json"];
 
     [self postToFlak:urlString 
 		  jsonString: jsonStringForUser];
@@ -160,17 +167,22 @@
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 
-    NSURL *url = [NSURL URLWithString:@"http://flak.heroku.com"];
+    NSURL *url = [NSURL URLWithString:self.preferences.hostUrl];
     NSLog(@"cookies: %@", [cookieStorage cookiesForURL:url]);
     [pool drain];
 }
 
 - (void)retrieveNextMessages {
-	NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
-	NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
+    // the 2 statements below can be removed once we have a timer that maintains the session.
+    [self initAndGetCookies];
+    [self createNewSessionForLogin];
+
+    NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
+    NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
 
     SBJSON *parser = [[SBJSON alloc] init];
-	NSString *myUrl = [NSString stringWithFormat:@"http://flak.heroku.com/messages.json?kind=message&after_id=%@", maxMessageId];
+    NSString *queryUrl = [self.preferences.hostUrl stringByAppendingString:@"/messages.json?kind=message&after_id=%@"];
+    NSString *myUrl = [NSString stringWithFormat:queryUrl, maxMessageId];
 
     NSURL *url = [NSURL URLWithString:myUrl];
 

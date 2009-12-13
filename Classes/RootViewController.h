@@ -13,6 +13,7 @@
 	NSManagedObjectContext *managedObjectContext;
 	FlakManager *flakManager;
 	MessageViewController *messageViewController;
+	UITableViewCell *nibLoadedCell;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -20,7 +21,7 @@
 
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
 @property (nonatomic, retain) IBOutlet  MessageViewController *messageViewController;
-
+@property (nonatomic, retain) IBOutlet  UITableViewCell *nibLoadedCell;
 
 - (void)insertNewObject;
 - (NSNumber *)getMaxMessageId;

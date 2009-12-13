@@ -17,6 +17,7 @@
 @synthesize fetchedResultsController, managedObjectContext;
 @synthesize flakManager;
 @synthesize messageViewController;
+@synthesize nibLoadedCell;
 
 
 #pragma mark -
@@ -168,16 +169,31 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
+        //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+
+	    [[NSBundle mainBundle] loadNibNamed:@"FlakTableCell" owner:self options:NULL];
+	    cell = nibLoadedCell;
+	}
+
 	// Configure the cell.
 	NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	cell.textLabel.text = [[managedObject valueForKey:@"messageText"] description];
-	
-    return cell;
+	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	//cell.textLabel.text = [[managedObject valueForKey:@"messageText"] description];
+
+	NSString *messageText = [[managedObject valueForKey:@"messageText"] description];
+	UILabel *messageTextLabel = (UILabel*) [cell viewWithTag:3];
+	messageTextLabel.text = messageText;
+
+	NSString *firstName = [[managedObject valueForKey:@"firstName"] description];
+	NSString *lastName = [[managedObject valueForKey:@"lastName"] description];
+	UILabel *fullNameLabel = (UILabel*) [cell viewWithTag:1];
+	fullNameLabel.text = [firstName stringByAppendingString:[NSString stringWithFormat:@" %@", lastName]];
+
+	NSString *dateTimeText = [[managedObject valueForKey:@"dateTime"] description];
+	UILabel *dateTimeLabel = (UILabel*) [cell viewWithTag:2];
+	dateTimeLabel.text = dateTimeText;
+
+	return cell;
 }
 
 
@@ -322,7 +338,8 @@
 	[fetchRequest setFetchBatchSize:20];
 	
 	// Edit the sort key as appropriate.
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"messageId" ascending:NO];
+	//NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
 	//NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"messageText" ascending:NO];
 	
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];

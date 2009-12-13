@@ -1,3 +1,40 @@
+-Steve will: split the message view controller into a read and a write version
+-custom cells
+  -reduce fonts of message
+  -show person in bold top right corner
+  -show elapsedTime of when message was created compared to the
+    last time messages were acquired(top left corner)
+  -custom cell height if time permits.
+
+-Add get next messages button at the top of table as per Eric's suggestion
+  -scroll to grab more messages(see adding a get next messages button above)
+
+-MessageViewController
+  -remove User ID
+  -split into 1 for writing and different 1 for viewing
+
+-session keep alive
+-change "done" button to "Post"
+-tab labels
+-show failure or success message/alert
+-scroll to grab more messages(see adding a get next messages button above)
+-move CoreData code into a model class or Core Data manager
+-get rid of currentMessage from NIB, use a better design
+-incorporate Eric's gists
+-escape post message body to prevent it jason from hickuping if we have a " in the messageText body
+
+-map tab key to jump between fields in preferences view
+-Remove un-used code
+-rename project if possible
+
+-Custom Cell Part 2 - i.e implement custom cell height as per Cocoa is my girlfriend website.
+
+
+ITEMS THAT ARE DONE ARE SHOW BELOW
+==================================
+-Switch message time from GMT to Local Time as per Eric's gist
+-Test post message action button should be able to login automatically.
+
 -prevent duplicates
   -done
 -Sending a Message
@@ -21,24 +58,6 @@
     -done
   -host preferences
     -done
-
--Steve will: split the message view controller into a read and a write version
-
 -expose host url in preferences
--session keep alive
+  -done
 
--change "done" button to "Post"
--tab labels
--custom cells
-  -custom height
-  -show person
--MessageViewController
-  -remove User ID
-  -split into 1 for writing and different 1 for viewing
--show failure or success message/alert
--scroll to grab more messages
--move CoreData code into a model class or Core Data manager
--get rid of message from NIB
--incorporate Eric's gists
--escape post message body
--map tab key to jump between fields in preferences view
