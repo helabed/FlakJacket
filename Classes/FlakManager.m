@@ -22,19 +22,15 @@
 @synthesize currentListOfMessages;
 
 
-
 - (void)dealloc {
 	[currentUser release];
 	[currentMessage release];
 	[currentListOfMessages release];
-	
 	[firstViewController release];
 	[rootViewController release];
 	[coreDataAppDelegate release];
-	
-	
+
     [super dealloc];
 }
-
 
 @end

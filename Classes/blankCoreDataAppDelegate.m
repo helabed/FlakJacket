@@ -31,10 +31,8 @@
 	
 	//[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
-	
-	
-	assert( flakManager != nil );
 
+	assert( flakManager != nil );
 }
 
 /**
@@ -143,22 +141,17 @@
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
-
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
 	[flakManager release];
-	
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];
-    
 	[navigationController release];
 	[window release];
 	[super dealloc];
 }
 
-
 @end
-

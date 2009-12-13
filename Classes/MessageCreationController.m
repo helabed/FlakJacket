@@ -8,13 +8,13 @@
 
 #import "MessageCreationController.h"
 #import "FlakManager.h"
+#import "FlakWhisperer.h"
 #import "FirstViewController.h"
 #import "IPDCMessage.h"
 
 @implementation MessageCreationController
 
-@synthesize messageText;
-@synthesize flakManager;
+@synthesize messageText, flakManager, whisperer;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -44,7 +44,7 @@
 - (IBAction)done {
 	[self.navigationController popViewControllerAnimated:YES];
 	NSLog(@"message text: %@", flakManager.currentMessage.messageText);
-	[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
+	[self.whisperer postMessage:self.flakManager.currentMessage.messageText];
 	[self.flakManager.firstViewController retrieveNextMessages];
 	[[self parentViewController] dismissModalViewControllerAnimated:YES];
 }
@@ -101,8 +101,9 @@
 }
 
 - (void)dealloc {
-	[messageText dealloc];	
-	[flakManager dealloc];
+	[messageText release];
+	[flakManager release];
+	[whisperer release];
 	[super dealloc];
 }
 

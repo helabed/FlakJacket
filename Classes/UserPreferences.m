@@ -7,11 +7,21 @@
 //
 
 #import "UserPreferences.h"
+#import "IPDCUser.h"
 
 @implementation UserPreferences
 
 @synthesize firstName, lastName, emailAddress, password, hostUrl;
 
+
+- (IPDCUser *) getUser{
+    IPDCUser *user = [[IPDCUser alloc] init];
+    user.firstName = self.firstName;
+    user.lastName = self.lastName;
+    user.email = self.emailAddress;
+    user.password = self.password;
+    return user;
+}
 
 - (void)createUserDefaultsFromPlist {
     NSString *settingsPlistPath = [[NSBundle mainBundle]

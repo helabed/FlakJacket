@@ -12,12 +12,7 @@
 
 @implementation MessageViewController
 
-@synthesize messageText;
-@synthesize firstName;
-@synthesize lastName;
-
-@synthesize flakManager;
-
+@synthesize messageText, firstName, lastName, flakManager;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -50,7 +45,6 @@
 	[self.navigationController popViewControllerAnimated:YES];
 } 
 
-
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
@@ -69,11 +63,10 @@
 }
 
 - (void)dealloc {
-	[messageText dealloc];
-	[firstName dealloc];
-	[lastName dealloc];
-
-	[flakManager dealloc];
+	[messageText release];
+	[firstName release];
+	[lastName release];
+	[flakManager release];
 	[super dealloc];
 }
 

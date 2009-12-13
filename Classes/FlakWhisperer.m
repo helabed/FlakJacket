@@ -7,9 +7,59 @@
 //
 
 #import "FlakWhisperer.h"
-
+#import "IPDCUser.h"
+#import "UserPreferences.h"
+#import "JSON.h"
 
 @implementation FlakWhisperer
+
+@synthesize preferences;
+
+- (void)initAndGetCookies{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+
+    NSURL *url = [NSURL URLWithString:self.preferences.hostUrl];
+    NSLog(@"cookies: %@", [cookieStorage cookiesForURL:url]);
+    [pool drain];
+}
+
+- (void)createNewSessionForLogin{
+    IPDCUser *user = [self.preferences getUser];
+
+    NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
+    NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/session.json"];
+
+    [FlakWhisperer postToFlak:urlString
+				   jsonString: jsonStringForSessionCreation];
+}
+
+- (void)postMessage:(NSString *)messageBody {
+	// the 2 statements below can be removed once we have a timer that maintains the session.
+	[self initAndGetCookies];
+	[self createNewSessionForLogin];
+
+	IPDCUser *user = [self.preferences getUser];
+
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSDictionary dictionaryWithObjectsAndKeys:
+								 user.email, @"user_id",
+								 messageBody, @"body",
+								 nil],
+                                @"message", nil];
+
+    SBJSON *parser = [[SBJSON alloc] init];
+    NSString *newJsonString = [parser stringWithObject:dictionary];
+    [parser release];
+
+    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
+
+    [FlakWhisperer postToFlak:urlString 
+				   jsonString: newJsonString];
+}
 
 +(void) postToFlak: (NSString *)urlString jsonString: (NSString *)jsonStringToUse {
     NSURL *url = [NSURL URLWithString:urlString];

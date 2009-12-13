@@ -11,8 +11,7 @@
 
 @implementation UserPreferencesViewController
 
-@synthesize preferences, firstNameTextField, lastNameTextField, emailAddressTextField, passwordTextField;
-@synthesize hostUrlTextField;
+@synthesize preferences, firstNameTextField, lastNameTextField, emailAddressTextField, passwordTextField, hostUrlTextField;
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
@@ -92,8 +91,13 @@
 	// e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
+	[preferences release];
+	[firstNameTextField release];
+	[lastNameTextField release];
+	[emailAddressTextField release];
+	[passwordTextField release];
+	[hostUrlTextField release];
     [super dealloc];
 }
 

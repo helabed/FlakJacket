@@ -406,11 +406,9 @@
 	// Relinquish ownership of any cached data, images, etc that aren't in use.
 }
 
-
 - (void)dealloc {
 	[flakManager release];
 	[messageViewController release];
-	
 	[fetchedResultsController release];
 	[managedObjectContext release];
 	[headerView release];
@@ -418,6 +416,4 @@
     [super dealloc];
 }
 
-
 @end
-

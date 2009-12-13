@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class IPDCUser;
 
 @interface UserPreferences : NSObject {
 	NSString *firstName;
@@ -24,5 +25,6 @@
 @property(nonatomic, retain) NSString *hostUrl;
 
 - (void)saveUserDefaultsToPlist;
+- (IPDCUser *)getUser;
 
 @end

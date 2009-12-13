@@ -11,14 +11,17 @@
 @class IPDCUser;
 @class FlakManager;
 @class UserPreferences;
+@class FlakWhisperer;
 
 @interface FirstViewController : UIViewController {
 	FlakManager *flakManager;
 	UserPreferences *preferences;
+	FlakWhisperer *whisperer;
 }
 
 @property(nonatomic, retain) IBOutlet FlakManager *flakManager;
 @property(nonatomic, retain) IBOutlet UserPreferences *preferences;
+@property(nonatomic, retain) IBOutlet FlakWhisperer *whisperer;
 
 
 - (IBAction)testFlak;
@@ -29,11 +32,7 @@
 
 - (void)testForFlakServer:(NSString *)hostURL;
 - (void)retrieveNextMessages;
-- (void)initAndGetCookies;
 - (void)createNewAccount;
-- (void)createNewSessionForLogin;
-- (IPDCUser *)getUser;
 - (void)postAHelloFromUser;
-- (void)postMessage:(NSString *)messageBody;
 
 @end

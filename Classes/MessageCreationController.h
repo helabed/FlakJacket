@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class FlakManager;
+@class FlakWhisperer;
 
 @interface MessageCreationController : UIViewController  <UITextFieldDelegate,UITextViewDelegate> {
 	UITextView    *messageText;
 	FlakManager    *flakManager;
+	FlakWhisperer *whisperer;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *messageText;
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
+@property (nonatomic, retain) IBOutlet FlakWhisperer *whisperer;
 
 - (IBAction)done;
 

@@ -17,89 +17,40 @@
 
 @implementation FirstViewController
 
-@synthesize flakManager, preferences;
+@synthesize flakManager, preferences, whisperer;
 
 - (IBAction)testFlak{
 	[self testForFlakServer:self.preferences.hostUrl];
 }
 
 - (IBAction)testCreateNewAccount{
-	[self initAndGetCookies];
+	[self.whisperer initAndGetCookies];
 	[self createNewAccount];
 }
 
 - (IBAction)testLogin{
-	[self initAndGetCookies];
-	[self createNewSessionForLogin];
+	[self.whisperer initAndGetCookies];
+	[self.whisperer createNewSessionForLogin];
 }
+
 - (IBAction)testGettingMessages{
-	[self initAndGetCookies];
+	[self.whisperer initAndGetCookies];
 	[self retrieveNextMessages];
 }
 
 - (IBAction)testPostHelloFromUser{
-	[self initAndGetCookies];
+	[self.whisperer initAndGetCookies];
 	[self postAHelloFromUser];
 }
 
-- (IPDCUser *) getUser{
-    IPDCUser *user = [[IPDCUser alloc] init];
-    user.firstName = self.preferences.firstName;
-    user.lastName = self.preferences.lastName;
-    user.email = self.preferences.emailAddress;
-    user.password = self.preferences.password;
-    return user;
-}
-
-- (void)createNewSessionForLogin{
-    IPDCUser *user = [self getUser];
-	
-    NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
-    NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/session.json"];
-	
-    [FlakWhisperer postToFlak:urlString 
-		  jsonString: jsonStringForSessionCreation];
-}
-
-- (void)postMessage:(NSString *)messageBody {
-	// the 2 statements below can be removed once we have a timer that maintains the session.
-	[self initAndGetCookies];
-	[self createNewSessionForLogin];
-
-	IPDCUser *user = [self getUser];
-
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSDictionary dictionaryWithObjectsAndKeys:
-								 user.email, @"user_id",
-								 messageBody, @"body", 
-								 nil],
-                                @"message", nil];
-
-    SBJSON *parser = [[SBJSON alloc] init];
-    NSString *newJsonString = [parser stringWithObject:dictionary];
-
-    // NSString *finalJsonString = [NSString stringWithFormat:@"{ \"message\": %@ }", newJsonString];
-
-    [parser release];
-
-	// NSString *jsonStringForSessionCreation = [user jsonStringForSessionCreation];
-    // NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
-
-    NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
-
-    [FlakWhisperer postToFlak:urlString 
-		  jsonString: newJsonString];
-}
-
 - (void)postAHelloFromUser{
-	IPDCUser *user = [self getUser];
+	IPDCUser *user = [self.preferences getUser];
 	NSString *message = [NSString stringWithFormat:@"Hello from %@ %@", user.firstName, user.lastName];
-	[self postMessage:message];
+	[self.whisperer postMessage:message];
 }
 
 - (void)createNewAccount{
-    IPDCUser *user = [self getUser];
+    IPDCUser *user = [self.preferences getUser];
     NSString *jsonStringForUser = [user jsonStringForUserCreation];
     NSLog(@"createNewAccount: %@", jsonStringForUser);
     NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/users.json"];
@@ -108,22 +59,10 @@
 		  jsonString:jsonStringForUser];
 }
 
-- (void)initAndGetCookies{
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    // IPDCMessageManager *messageManager = [[IPDCMessageManager alloc] init];
-
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-
-    NSURL *url = [NSURL URLWithString:self.preferences.hostUrl];
-    NSLog(@"cookies: %@", [cookieStorage cookiesForURL:url]);
-    [pool drain];
-}
-
 - (void)retrieveNextMessages {
     // the 2 statements below can be removed once we have a timer that maintains the session.
-    [self initAndGetCookies];
-    [self createNewSessionForLogin];
+    [self.whisperer initAndGetCookies];
+    [self.whisperer createNewSessionForLogin];
 
     NSNumber *maxMessageId = [self.flakManager.rootViewController getMaxMessageId];
     NSLog(@"we have retrieved the maxMessageId: %@", maxMessageId);
@@ -141,9 +80,7 @@
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 
-    //NSLog(@"jsonString: %@", jsonString);
     NSArray *jsonArray = [parser objectWithString:jsonString];
-    //NSLog(@"json array: %@", jsonArray);
     NSMutableArray *messages = [[NSMutableDictionary alloc] init];
 
     for (NSDictionary *messageDictionary in jsonArray) {
@@ -160,23 +97,22 @@
     NSLog(@"chat messages: %@", messages);
     [messages release];
     [parser release];
-
 }
 
 - (void)testForFlakServer:(NSString *)hostURL {
     NSString *urlString = [NSString stringWithFormat:@"%@/flak", hostURL];
     NSLog(@"urlString: %@", urlString);
-	
+
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	
+
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-	
+
     [NSURLConnection sendSynchronousRequest:request 
                           returningResponse:&response 
                                       error:&error];
-	
+
     NSInteger statusCode = [response statusCode];
     NSLog(@"statusCode: %d", statusCode);
 }
@@ -210,6 +146,7 @@
 
 - (void)dealloc {
 	[flakManager release];
+	[whisperer release];
     [super dealloc];
 }
 
