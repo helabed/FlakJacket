@@ -14,12 +14,7 @@
 @implementation MessageCreationController
 
 @synthesize messageText;
-@synthesize userId;
-@synthesize firstName;
-@synthesize lastName;
-
 @synthesize flakManager;
-
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -29,13 +24,10 @@
  }
  return self;
  }
- */
+*/
 
 - (void) updateMessage {
 	self.messageText.text = self.flakManager.currentMessage.messageText;
-	// self.userId.text = self.flakManager.currentMessage.userId;
-	self.firstName.text = self.flakManager.currentMessage.firstName;
-	self.lastName.text = self.flakManager.currentMessage.lastName;	
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -51,12 +43,11 @@
 
 - (IBAction)done {
 	[self.navigationController popViewControllerAnimated:YES];
-
+	NSLog(@"message text: %@", flakManager.currentMessage.messageText);
 	[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
 	[self.flakManager.firstViewController retrieveNextMessages];
 	[[self parentViewController] dismissModalViewControllerAnimated:YES];
-} 
-
+}
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -73,20 +64,16 @@
 }
 
 // used to update the user feedback( or outcome message ).
-- (void)textFieldDidEndEditing:(UITextField *)textField { 
-	NSLog(@"textFieldDidEndEditing method invoked");
-	if(textField == self.firstName) {
-		self.firstName =  textField;	
-	} else if( textField == self.lastName ){
-		self.lastName = textField;
-	}
+/*
+- (void)textFieldDidEndEditing:(UITextField *)textField {
 }
+*/
 
 #pragma mark -
 #pragma mark UITextViewDelegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-	NSLog(@"textViewDidEndEditing method invoked");
+	NSLog(@"======================= textViewDidEndEditing method invoked");
 	if(textView == self.messageText) {
 		self.flakManager.currentMessage.messageText = textView.text;
 	}
@@ -105,7 +92,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -115,11 +102,7 @@
 }
 
 - (void)dealloc {
-	[messageText dealloc];
-	[userId dealloc];
-	[firstName dealloc];
-	[lastName dealloc];
-	
+	[messageText dealloc];	
 	[flakManager dealloc];
 	[super dealloc];
 }
