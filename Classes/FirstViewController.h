@@ -32,7 +32,6 @@
 - (void)initAndGetCookies;
 - (void)createNewAccount;
 - (void)createNewSessionForLogin;
-- (void)postToFlak: (NSString *) urlString jsonString: (NSString *) jsonStringToUse; 
 - (IPDCUser *)getUser;
 - (void)postAHelloFromUser;
 - (void)postMessage:(NSString *)messageBody;

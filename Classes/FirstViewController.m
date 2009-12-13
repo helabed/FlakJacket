@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "JSON.h"
+#import "FlakWhisperer.h"
 #import "IPDCMessage.h"
 #import "IPDCUser.h"
 #import "FlakManager.h"
@@ -57,7 +58,7 @@
     NSLog(@"jsonStringForSessionCreation: %@", jsonStringForSessionCreation);
     NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/session.json"];
 	
-    [self postToFlak:urlString 
+    [FlakWhisperer postToFlak:urlString 
 		  jsonString: jsonStringForSessionCreation];
 }
 
@@ -87,7 +88,7 @@
 
     NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/messages.json"];
 
-    [self postToFlak:urlString 
+    [FlakWhisperer postToFlak:urlString 
 		  jsonString: newJsonString];
 }
 
@@ -103,33 +104,8 @@
     NSLog(@"createNewAccount: %@", jsonStringForUser);
     NSString *urlString = [self.preferences.hostUrl stringByAppendingString:@"/users.json"];
 
-    [self postToFlak:urlString 
+    [FlakWhisperer postToFlak:urlString 
 		  jsonString:jsonStringForUser];
-}
-	
-- (void) postToFlak: (NSString *)urlString jsonString: (NSString *)jsonStringToUse {
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-
-    NSData *data = [jsonStringToUse dataUsingEncoding:NSISOLatin2StringEncoding];
-    [request setHTTPBody:data];
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-
-    NSData *responseData = [NSURLConnection 
-                            sendSynchronousRequest:request 
-                            returningResponse:&response 
-                            error:&error];
-
-    NSString *responseString = [[[NSString alloc] initWithData:responseData
-                                                      encoding:NSUTF8StringEncoding] autorelease];
-
-    NSLog(@"responseString: %@", responseString);
 }
 
 - (void)initAndGetCookies{
@@ -205,27 +181,8 @@
     NSLog(@"statusCode: %d", statusCode);
 }
 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
 	assert(flakManager != nil);
 	assert(preferences != nil);
 }
@@ -242,7 +199,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -251,10 +208,8 @@
 	// e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
 	[flakManager release];
-	
     [super dealloc];
 }
 

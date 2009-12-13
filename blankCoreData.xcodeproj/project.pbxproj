@@ -47,6 +47,7 @@
 		DC08AAB610CC5AAB0023EE9C /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB510CC5AAB0023EE9C /* 09-chat2.png */; };
 		DC08AAB910CC5B2F0023EE9C /* 101-gameplan.png in Resources */ = {isa = PBXBuildFile; fileRef = DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */; };
 		DC08AAC910CC5E1B0023EE9C /* UserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */; };
+		DC1905A510D5A0B5006C9D59 /* FlakWhisperer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1905A410D5A0B5006C9D59 /* FlakWhisperer.m */; };
 		DCC5413510D57C0F007CD963 /* MessageCreationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC5413410D57C0F007CD963 /* MessageCreationController.xib */; };
 		DCF17CD810CC8C0100FDA3B1 /* FlakSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCF17CD710CC8C0100FDA3B1 /* FlakSettings.plist */; };
 		DCF2A33D10D57A6700B21B90 /* MessageCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF2A33B10D57A6700B21B90 /* MessageCreationController.m */; };
@@ -123,6 +124,8 @@
 		DC08AAB810CC5B2F0023EE9C /* 101-gameplan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "101-gameplan.png"; sourceTree = "<group>"; };
 		DC08AAC710CC5E1B0023EE9C /* UserPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferencesViewController.h; sourceTree = "<group>"; };
 		DC08AAC810CC5E1B0023EE9C /* UserPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesViewController.m; sourceTree = "<group>"; };
+		DC1905A310D5A0B5006C9D59 /* FlakWhisperer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlakWhisperer.h; sourceTree = "<group>"; };
+		DC1905A410D5A0B5006C9D59 /* FlakWhisperer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlakWhisperer.m; sourceTree = "<group>"; };
 		DCC5413410D57C0F007CD963 /* MessageCreationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCreationController.xib; sourceTree = "<group>"; };
 		DCF17CD710CC8C0100FDA3B1 /* FlakSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlakSettings.plist; sourceTree = "<group>"; };
 		DCF2A33A10D57A6700B21B90 /* MessageCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCreationController.h; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DC1905A310D5A0B5006C9D59 /* FlakWhisperer.h */,
+				DC1905A410D5A0B5006C9D59 /* FlakWhisperer.m */,
 				37E5CE0B10C387E9005D278F /* Event.h */,
 				37E5CE0C10C387E9005D278F /* Event.m */,
 				37E5CE0D10C387E9005D278F /* User.h */,
@@ -395,6 +400,7 @@
 				DC08AAAB10CC56D60023EE9C /* UserPreferences.m in Sources */,
 				DC08AAC910CC5E1B0023EE9C /* UserPreferencesViewController.m in Sources */,
 				DCF2A33D10D57A6700B21B90 /* MessageCreationController.m in Sources */,
+				DC1905A510D5A0B5006C9D59 /* FlakWhisperer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
