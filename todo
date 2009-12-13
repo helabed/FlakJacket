@@ -1,18 +1,16 @@
--Switch message time from GMT to Local Time as per Eric's gist
--Test post message action button should be able to login automatically.
-
--session keep alive
--change "done" button to "Post"
--tab labels
 -custom cells
   -reduce fonts of message
   -show person in bold top right corner
   -show elapsedTime of when message was created compared to the last time messages were acquired(top left corner)
   -custom cell height if time permits.
 -Add get next messages button at the top of table as per Eric's suggestion
+  -scroll to grab more messages(see adding a get next messages button above)
 -MessageViewController
   -remove User ID
   -split into 1 for writing and different 1 for viewing
+-session keep alive
+-change "done" button to "Post"
+-tab labels
 -show failure or success message/alert
 -scroll to grab more messages(see adding a get next messages button above)
 -move CoreData code into a model class or Core Data manager
@@ -21,12 +19,17 @@
 -escape post message body to prevent it jason from hickuping if we have a " in the messageText body
 
 -map tab key to jump between fields in preferences view
+-Remove un-used code
+-rename project if possible
 
-
+-Custom Cell Part 2 - i.e implement custom cell height as per Cocoa is my girlfriend website.
 
 
 ITEMS THAT ARE DONE ARE SHOW BELOW
 ==================================
+-Switch message time from GMT to Local Time as per Eric's gist
+-Test post message action button should be able to login automatically.
+
 -prevent duplicates
   -done
 -Sending a Message
