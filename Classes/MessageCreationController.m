@@ -1,16 +1,17 @@
 //
-//  MessageViewController.m
+//  MessageCreationController.m
 //  blankCoreData
 //
-//  Created by Hani Elabed on 11/30/09.
-//  Copyright 2009 Elabed Enterprises, LLC. All rights reserved.
+//  Created by Stephen Anderson on 12/13/09.
+//  Copyright 2009 Bendyworks. All rights reserved.
 //
 
-#import "MessageViewController.h"
+#import "MessageCreationController.h"
 #import "FlakManager.h"
+#import "FirstViewController.h"
 #import "IPDCMessage.h"
 
-@implementation MessageViewController
+@implementation MessageCreationController
 
 @synthesize messageText;
 @synthesize userId;
@@ -22,19 +23,19 @@
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+ // Custom initialization
+ }
+ return self;
+ }
+ */
 
 - (void) updateMessage {
 	self.messageText.text = self.flakManager.currentMessage.messageText;
-	// self.userId.text = self.flakManager.currentMessage.userId;
+	//self.userId.text = self.flakManager.currentMessage.userId;
 	self.firstName.text = self.flakManager.currentMessage.firstName;
-	self.lastName.text = self.flakManager.currentMessage.lastName;
+	self.lastName.text = self.flakManager.currentMessage.lastName;	
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -48,10 +49,13 @@
 	[self updateMessage];
 }
 
-- (IBAction)done { 
-	// [[self parentViewController] dismissModalViewControllerAnimated:YES]; 
+- (IBAction)done {
 	NSLog(@"done method invoked");
 	[self.navigationController popViewControllerAnimated:YES];
+	
+	[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
+	[self.flakManager.firstViewController retrieveNextMessages];
+	[[self parentViewController] dismissModalViewControllerAnimated:YES];
 } 
 
 
@@ -77,7 +81,7 @@
 	NSLog(@"textFieldDidEndEditing method invoked");
 	if(textField == self.firstName) {
 		self.firstName =  textField;	
-	} else if( textField == self.lastName) {
+	} else if( textField == self.lastName ){
 		self.lastName = textField;
 	}
 }
@@ -94,7 +98,7 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range 
-												replacementText:(NSString *)text {
+ replacementText:(NSString *)text {
 	if ([text isEqualToString:@"\n"]) {
 		[textView resignFirstResponder];
 		return NO;
@@ -119,7 +123,7 @@
 	[userId dealloc];
 	[firstName dealloc];
 	[lastName dealloc];
-
+	
 	[flakManager dealloc];
 	[super dealloc];
 }

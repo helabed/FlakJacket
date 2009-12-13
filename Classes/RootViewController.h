@@ -7,12 +7,14 @@
 //
 @class FlakManager;
 @class MessageViewController;
+@class MessageCreationController;
 
 @interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
 	FlakManager *flakManager;
 	MessageViewController *messageViewController;
+	MessageCreationController *messageCreationController;
 	UITableViewCell *nibLoadedCell;
 }
 
@@ -21,6 +23,7 @@
 
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
 @property (nonatomic, retain) IBOutlet  MessageViewController *messageViewController;
+@property (nonatomic, retain) IBOutlet  MessageCreationController *messageCreationController;
 @property (nonatomic, retain) IBOutlet  UITableViewCell *nibLoadedCell;
 
 - (void)insertNewObject;

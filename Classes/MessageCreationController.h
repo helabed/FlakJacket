@@ -1,16 +1,16 @@
 //
-//  MessageViewController.h
+//  MessageCreationController.h
 //  blankCoreData
 //
-//  Created by Hani Elabed on 11/30/09.
-//  Copyright 2009 Elabed Enterprises, LLC. All rights reserved.
+//  Created by Stephen Anderson on 12/13/09.
+//  Copyright 2009 Bendyworks. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @class FlakManager;
 
-@interface MessageViewController : UIViewController  <UITextFieldDelegate,UITextViewDelegate> {
+@interface MessageCreationController : UITableViewController {
 	UITextView    *messageText;
 	UITextField    *userId;
 	UITextField    *firstName;
@@ -25,6 +25,6 @@
 
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
 
-- (IBAction)done; 
+- (IBAction)done;
 
 @end

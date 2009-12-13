@@ -10,42 +10,38 @@
 #import "FlakManager.h"
 #import "IPDCMessage.h"
 #import "MessageViewController.h"
-
+#import "MessageCreationController.h"
 
 @implementation RootViewController
 
 @synthesize fetchedResultsController, managedObjectContext;
 @synthesize flakManager;
-@synthesize messageViewController;
+@synthesize messageViewController, messageCreationController;
 @synthesize nibLoadedCell;
-
 
 #pragma mark -
 #pragma mark View lifecycle
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	
-	assert( flakManager != nil );
-	assert( messageViewController != nil );
-	
+	assert(flakManager != nil);
+	assert(messageViewController != nil);
+
 	// Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
+
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
 																			   target:self 
 																			   action:@selector(addMessageAction)];
-																			   //action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
-	
+
 	NSError *error = nil;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		/*
 		 Replace this implementation with code to handle the error appropriately.
-		 
+
 		 abort() causes the application to generate a crash log and terminate. 
 		 You should not use this function in a shipping application, although it 
 		 may be useful during development. If it is not possible to recover from the error, 
@@ -56,19 +52,14 @@
 	}
 }
 
-- (IBAction)addMessageAction { 
-	NSLog(@"add message method invoked");
-	
+- (IBAction)addMessageAction {
 	self.flakManager.currentMessage.messageText = @"";
-	//self.flakManager.currentMessage.kind = [selectedObject valueForKey:@"kind"];
 	self.flakManager.currentMessage.lastName  = @"";
 	self.flakManager.currentMessage.firstName  = @"";
-	//self.flakManager.currentMessage.userId  = [selectedObject valueForKey:@"userId"];
 
-	[self presentModalViewController:self.messageViewController animated:YES]; 
-	
-	NSLog(@"after call to Modal Dialog messageViewController");	
+	[self presentModalViewController:self.messageCreationController animated:YES]; 
 }
+
 /*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -103,10 +94,8 @@
 }
  */
 
-
 #pragma mark -
 #pragma mark Add a new object
-
 
 - (void)insertNewObject {
 	// Create a new instance of the entity managed by the fetched results controller.
@@ -155,16 +144,13 @@
     return [[fetchedResultsController sections] count];
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -207,7 +193,7 @@
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
-	
+
 	//MessageViewController *messageViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
 	NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 
