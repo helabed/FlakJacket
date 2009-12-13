@@ -32,7 +32,6 @@
 
 - (void) updateMessage {
 	self.messageText.text = self.flakManager.currentMessage.messageText;
-	// self.userId.text = self.flakManager.currentMessage.userId;
 	self.firstName.text = self.flakManager.currentMessage.firstName;
 	self.lastName.text = self.flakManager.currentMessage.lastName;
 }
@@ -48,17 +47,13 @@
 	[self updateMessage];
 }
 
-- (IBAction)done { 
-	// [[self parentViewController] dismissModalViewControllerAnimated:YES]; 
-	NSLog(@"done method invoked");
+- (IBAction)done {
 	[self.navigationController popViewControllerAnimated:YES];
 } 
 
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 	return YES;
 }
 

@@ -40,7 +40,6 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	NSLog(@"MCC: viewDidLoad");
 	[super viewDidLoad];
 	[self updateMessage];
 }
@@ -51,9 +50,8 @@
 }
 
 - (IBAction)done {
-	NSLog(@"done method invoked");
 	[self.navigationController popViewControllerAnimated:YES];
-	
+
 	[self.flakManager.firstViewController postMessage:self.flakManager.currentMessage.messageText];
 	[self.flakManager.firstViewController retrieveNextMessages];
 	[[self parentViewController] dismissModalViewControllerAnimated:YES];
@@ -62,8 +60,6 @@
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 	return YES;
 }
 
