@@ -20,7 +20,6 @@
 @synthesize messageText;
 @synthesize firstName;
 @synthesize lastName;
-@synthesize dateFormatter;
 
 -(void) logMessage {
 	NSLog(@"=======================================");
@@ -35,48 +34,46 @@
 }
 
 - (NSDate *) createLocalDate:(NSDictionary *)messageDictionary forKey:(NSString *)key {
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 
-    NSDate *sourceDate;
-    NSTimeZone *sourceTimeZone;
-    NSTimeZone *destinationTimeZone;
-    NSInteger sourceGMTOffset;
-    NSInteger destinationGMTOffset;
-    NSTimeInterval interval;
-    NSDate *destinationDate;
+	// dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+	dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'-06:00'";
 
     // The create date of the message returned by the Flak server
-    sourceDate = [self.dateFormatter dateFromString:[messageDictionary objectForKey:key]];
+	NSString *dateString = [messageDictionary objectForKey:key];
+	NSLog(@"/////C: dateString: %@", dateString);
+	
+    NSDate *sourceDate = [dateFormatter dateFromString:dateString];
+	NSLog(@"/////D: sourceDate: %@", sourceDate);
 
-    sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    destinationTimeZone = [NSTimeZone systemTimeZone];
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone *destinationTimeZone = [NSTimeZone systemTimeZone];
 
-    sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-    interval = destinationGMTOffset - sourceGMTOffset;
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
 
-    destinationDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate] autorelease];
+    NSDate *destinationDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate] autorelease];
+	[dateFormatter release];
     return destinationDate;
 }
 
 - (id)initWithJsonDictionary:(NSDictionary *)message {
-	//In the init method of something
-	self.dateFormatter = [[NSDateFormatter alloc] init];
-	self.dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-
     if (self = [super init]) {
         NSDictionary *messageDictionary = [message objectForKey:@"message"];
         self.messageId   = [messageDictionary objectForKey:@"id"];
         self.kind = [messageDictionary objectForKey:@"kind"];
-        //self.dateTime = [NSDate dateWithNaturalLanguageString:[messageDictionary objectForKey:@"created_at"]];
+        // self.dateTime = [NSDate dateWithNaturalLanguageString:[messageDictionary objectForKey:@"created_at"]];
 
         self.dateTime = [self createLocalDate:messageDictionary forKey:@"created_at"];
+		NSLog(@"<<<<<<<<<dateTime b: %@", self.dateTime);
 
         self.userId   = [messageDictionary objectForKey:@"user_id"];
         self.messageText = [messageDictionary objectForKey:@"body"];
         self.firstName = [messageDictionary objectForKey:@"user_first_name"];
         self.lastName = [messageDictionary objectForKey:@"user_last_name"];
     }
-    
+
     return self;
 }
 

@@ -17,15 +17,15 @@
 @synthesize rootViewController;
 @synthesize coreDataAppDelegate;
 
-@synthesize currentUser;
+// @synthesize currentUser;
 @synthesize currentMessage;
-@synthesize currentListOfMessages;
+// @synthesize currentListOfMessages;
 
 
 - (void)dealloc {
-	[currentUser release];
+	// [currentUser release];
 	[currentMessage release];
-	[currentListOfMessages release];
+	// [currentListOfMessages release];
 	[firstViewController release];
 	[rootViewController release];
 	[coreDataAppDelegate release];

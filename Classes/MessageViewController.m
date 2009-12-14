@@ -33,6 +33,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	assert (messageText != nil);
+	assert(firstName != nil);
+	assert(lastName != nil);
+	assert(flakManager != nil);
+
 	[self updateMessage];
 }
 

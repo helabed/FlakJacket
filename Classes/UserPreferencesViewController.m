@@ -63,7 +63,14 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 	assert(preferences != nil);
+	assert(firstNameTextField != nil);
+	assert(lastNameTextField != nil);
+	assert(emailAddressTextField != nil);
+	assert(passwordTextField != nil);
+	assert(hostUrlTextField != nil);
+
 	self.emailAddressTextField.text = preferences.emailAddress;
 	self.passwordTextField.text = preferences.password;
 	self.firstNameTextField.text = preferences.firstName;

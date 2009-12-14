@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "FlakManager.h"
+#import "FlakWhisperer.h"
 #import "IPDCMessage.h"
 #import "MessageViewController.h"
 #import "MessageCreationController.h"
@@ -16,7 +17,7 @@
 @implementation RootViewController
 
 @synthesize fetchedResultsController, managedObjectContext;
-@synthesize flakManager;
+@synthesize flakManager, whisperer;
 @synthesize messageViewController, messageCreationController;
 @synthesize nibLoadedCell;
 @synthesize headerView, tableView;
@@ -31,6 +32,9 @@
 	assert(messageViewController != nil);
 	assert(headerView != nil );
 	assert(tableView != nil );
+	assert(whisperer != nil);
+	assert(messageCreationController != nil);
+	// assert(nibLoadedCell != nil);
 
 	// Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -73,7 +77,7 @@
 
 - (IBAction)getNewestMessages {
 	NSLog(@"getNewestMessages invoked");
-	[self.flakManager.firstViewController retrieveNextMessages];
+	[self.whisperer retrieveNextMessages];
 }
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -133,6 +137,7 @@
 	[newManagedObject setValue:self.flakManager.currentMessage.messageText forKey:@"messageText"];
 	[newManagedObject setValue:self.flakManager.currentMessage.messageId forKey:@"messageId"];
 	[newManagedObject setValue:self.flakManager.currentMessage.dateTime forKey:@"dateTime"];
+	NSLog(@">>>>>>>>>>>>>>>>>>>>>DateTime set to: %@", self.flakManager.currentMessage.dateTime);
 	
 	// Save the context.
     NSError *error = nil;

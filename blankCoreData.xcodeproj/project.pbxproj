@@ -152,6 +152,8 @@
 			children = (
 				DC1905A310D5A0B5006C9D59 /* FlakWhisperer.h */,
 				DC1905A410D5A0B5006C9D59 /* FlakWhisperer.m */,
+				37E5CD3D10C37771005D278F /* FlakManager.h */,
+				37E5CD3E10C37771005D278F /* FlakManager.m */,
 				37E5CE0B10C387E9005D278F /* Event.h */,
 				37E5CE0C10C387E9005D278F /* Event.m */,
 				37E5CE0D10C387E9005D278F /* User.h */,
@@ -172,8 +174,6 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* blankCoreDataAppDelegate.h */,
 				1D3623250D0F684500981E51 /* blankCoreDataAppDelegate.m */,
-				37E5CD3D10C37771005D278F /* FlakManager.h */,
-				37E5CD3E10C37771005D278F /* FlakManager.m */,
 				37E5CE8710C3990A005D278F /* MessageViewController.h */,
 				37E5CE8810C3990A005D278F /* MessageViewController.m */,
 				DCF2A33A10D57A6700B21B90 /* MessageCreationController.h */,

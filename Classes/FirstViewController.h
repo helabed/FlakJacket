@@ -29,10 +29,9 @@
 - (IBAction)testGettingMessages;
 - (IBAction)testLogin;
 - (IBAction)testPostHelloFromUser;
-
 - (void)testForFlakServer:(NSString *)hostURL;
-- (void)retrieveNextMessages;
-- (void)createNewAccount;
 - (void)postAHelloFromUser;
+
+- (void)createNewAccount;
 
 @end

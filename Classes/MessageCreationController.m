@@ -33,6 +33,11 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	assert(messageText != nil);
+	assert(flakManager != nil);
+	assert(whisperer != nil);
+
 	[self updateMessage];
 }
 
@@ -45,7 +50,7 @@
 	[self.navigationController popViewControllerAnimated:YES];
 	NSLog(@"message text: %@", flakManager.currentMessage.messageText);
 	[self.whisperer postMessage:self.flakManager.currentMessage.messageText];
-	[self.flakManager.firstViewController retrieveNextMessages];
+	[self.whisperer retrieveNextMessages];
 	[[self parentViewController] dismissModalViewControllerAnimated:YES];
 }
 

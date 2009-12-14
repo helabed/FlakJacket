@@ -19,18 +19,17 @@
 	RootViewController  *rootViewController;
 	blankCoreDataAppDelegate *coreDataAppDelegate;
 
-	IPDCUser			*currentUser;
+	// IPDCUser			*currentUser;
 	IPDCMessage			*currentMessage;
-	NSArray				*currentListOfMessages;
+	// NSArray				*currentListOfMessages;
 }
 
 
 @property (nonatomic, retain) IBOutlet FirstViewController *firstViewController;
 @property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
 @property (nonatomic, retain) IBOutlet blankCoreDataAppDelegate *coreDataAppDelegate;
-
-@property (nonatomic, retain) IBOutlet IPDCUser    *currentUser;
+// @property (nonatomic, retain) IBOutlet IPDCUser    *currentUser;
 @property (nonatomic, retain) IBOutlet IPDCMessage *currentMessage;
-@property (nonatomic, retain) IBOutlet NSArray     *currentListOfMessages;
+// @property (nonatomic, retain) IBOutlet NSArray     *currentListOfMessages;
 
 @end

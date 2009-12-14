@@ -6,6 +6,7 @@
 //  Copyright Elabed Enterprises, LLC 2009. All rights reserved.
 //
 @class FlakManager;
+@class FlakWhisperer;
 @class MessageViewController;
 @class MessageCreationController;
 
@@ -13,6 +14,7 @@
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
 	FlakManager *flakManager;
+	FlakWhisperer *whisperer;
 	MessageViewController *messageViewController;
 	MessageCreationController *messageCreationController;
 	UITableViewCell *nibLoadedCell;
@@ -24,15 +26,15 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
+@property (nonatomic, retain) IBOutlet	FlakWhisperer *whisperer;
 @property (nonatomic, retain) IBOutlet  MessageViewController *messageViewController;
 @property (nonatomic, retain) IBOutlet  MessageCreationController *messageCreationController;
-@property (nonatomic, retain) IBOutlet  UITableViewCell *nibLoadedCell;
+@property (nonatomic, retain) IBOutlet	UITableViewCell *nibLoadedCell;
 @property (nonatomic, retain) IBOutlet	UIView *headerView;
 @property (nonatomic, retain) IBOutlet  UITableView *tableView;
 
-
 - (void)insertNewObject;
 - (NSNumber *)getMaxMessageId;
-
 - (IBAction)getNewestMessages;
+
 @end

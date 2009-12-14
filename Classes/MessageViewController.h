@@ -20,7 +20,6 @@
 @property (nonatomic, retain) IBOutlet UITextView *messageText;
 @property (nonatomic, retain) IBOutlet UITextField *firstName;
 @property (nonatomic, retain) IBOutlet UITextField *lastName;
-
 @property (nonatomic, retain) IBOutlet 	FlakManager *flakManager;
 
 - (IBAction)done; 

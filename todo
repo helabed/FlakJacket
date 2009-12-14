@@ -1,3 +1,4 @@
+-create user button in preferences view
 -move CoreData code into a model class or Core Data manager
 -get rid of currentMessage from NIB, use a better design
 

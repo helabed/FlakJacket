@@ -12,8 +12,8 @@
 @class FlakWhisperer;
 
 @interface MessageCreationController : UIViewController  <UITextFieldDelegate,UITextViewDelegate> {
-	UITextView    *messageText;
-	FlakManager    *flakManager;
+	UITextView *messageText;
+	FlakManager *flakManager;
 	FlakWhisperer *whisperer;
 }
 

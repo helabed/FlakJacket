@@ -25,14 +25,18 @@
     
     // Override point for customization after app launch    
     [window addSubview:tabBarController.view];
-	
+
 	RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
 	rootViewController.managedObjectContext = self.managedObjectContext;
-	
-	//[window addSubview:[navigationController view]];
+
+	// [window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 
-	assert( flakManager != nil );
+	assert(flakManager != nil);
+	assert(window != nil);
+	assert(navigationController != nil);
+	assert(tabBarController != nil);
+	assert(flakManager != nil);
 }
 
 /**
