@@ -37,7 +37,22 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 
 	// dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-	dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'-06:00'";
+	//dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'-06:00'";
+	dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+	/*
+	 From: Duane Lee <duane.lee1@gmail.com>
+	 Date: December 13, 2009 10:10:22 PM CST
+	 To: MATC iPhone Group <matc-iphone@googlegroups.com>
+	 Subject: [matc-iphone] date format changed
+	 Reply-To: matc-iphone@googlegroups.com
+	 
+	 Group:
+	 It seems the data format has changed on what is coming back from flak, it used to be self.dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+	 
+	 , now it's self.dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+	 Thanks
+	 Duane
+	 */
 
     // The create date of the message returned by the Flak server
 	NSString *dateString = [messageDictionary objectForKey:key];
